@@ -5,6 +5,7 @@ import { useAppSelector } from './store';
 import { useAuthentication } from './hooks/useAuthentication';
 import { useSession } from './hooks/useSession';
 import { useBeforeunload } from 'react-beforeunload';
+import { FormCreateUser } from './components';
 
 function App() {
 
@@ -49,6 +50,8 @@ function App() {
       {
        isErrorCloseSession && 'Не удалось завершить сессию'
       }
+
+      <FormCreateUser url='/user/create' />
     </div>
   );
 }

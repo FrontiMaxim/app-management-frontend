@@ -1,12 +1,9 @@
-import { UseFormRegister } from "react-hook-form";
-import { ILogin } from "../../pages/Login/ILogin";
+import { UseFormRegisterReturn } from "react-hook-form";
 
-type namesField = 'login' | 'password';
 type typesInput = 'text' | 'password';
 
 export interface IField {
     type: typesInput;
     placeholder: string;
-    register: UseFormRegister<ILogin>;
-    nameField: namesField;
+    register: UseFormRegisterReturn; 
 }
