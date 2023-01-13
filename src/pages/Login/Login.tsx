@@ -39,7 +39,7 @@ export const Login = () => {
     <div className={styles.login}>
         <FieldText type='text' placeholder='Логин' register={register('login')} />
         <FieldText type='password' placeholder='Пароль' register={register('password')} />
-        <Button value='Войти' handler={handleSubmit(submit)}/>
+        <Button value='Войти' onClick={handleSubmit(submit)} />
         {
           isErrorAuthenticate && 'Данного пользователя нет в системе'
         }

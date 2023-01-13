@@ -57,7 +57,7 @@ export const FormCreateUser = ({ url } : IPropsCreateUser) => {
                     register={register('role')}
                 />
 
-                <Button value='Создать пользователя' handler={handleSubmit(submit)}/>
+                <Button value='Создать пользователя' onClick={handleSubmit(submit)}/>
 
                 {
                     isErrorCreate && 'Данный пользователь уже существует'
