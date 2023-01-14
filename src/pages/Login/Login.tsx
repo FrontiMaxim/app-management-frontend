@@ -5,14 +5,13 @@ import { useForm } from 'react-hook-form';
 import { ILogin } from './ILogin';
 import { useAuthentication } from '../../hooks/useAuthentication';
 import { useSession } from '../../hooks/useSession';
-import { useAppSelector } from '../../store';
 
 export const Login = () => {
 
   const { register, handleSubmit } = useForm<ILogin>();
   const { authenticate, isAuthenticate, isErrorAuthenticate } = useAuthentication();
   const { openSession, isErrorOpenSession} = useSession();
-  const { token } = useAppSelector(state => state.token);
+  const token = localStorage.getItem('token');
 
   const refDataLogin = useRef<ILogin>({
     login: '',
@@ -27,9 +26,7 @@ export const Login = () => {
   }
 
   useEffect(() => {
-    if(isAuthenticate) {
-      localStorage.setItem('login', refDataLogin.current.login);
-      localStorage.setItem('password', refDataLogin.current.password);
+    if(isAuthenticate && token) {
       openSession('/session/open', token);
     }
   }, [isAuthenticate]);

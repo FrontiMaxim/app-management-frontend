@@ -12,7 +12,7 @@ export const ItemListUsers = ({ user, isChange, openModalWindow }: IPropsItemLis
             isChange && openModalWindow &&
             <div>
                 <Button value='редактировать' onClick={() => openModalWindow('CHANGHE_USER', user)} />
-                <Button value='удалить' onClick={() => openModalWindow('DELETE_USER', null)}/>
+                <Button value='удалить' onClick={() => openModalWindow('DELETE_USER', user)}/>
             </div>
         }
     </li>

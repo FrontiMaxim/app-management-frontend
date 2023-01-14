@@ -1,10 +1,12 @@
 import React from 'react'
-import { IPropsModalWindow } from './IModalWindow'
+import { IModalWindow } from './IModalWindow'
 
-export const ModalWindow = ({component, data, closeModalWindow}: IPropsModalWindow) => {
+export const ModalWindow = ({ children }: IModalWindow) => {
   return (
-    <div>
-      
-    </div>
+      <div>
+        {
+          children
+        }
+      </div>
   )
 }

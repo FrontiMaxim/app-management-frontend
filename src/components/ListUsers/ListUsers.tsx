@@ -3,12 +3,12 @@ import { IPropsListUsers } from './IListUsers'
 import { ItemListUsers } from './ItemListUsers/ItemListUsers'
 import { IUser } from '../../interfaces/IUser'
 import axios from 'axios'
-import { useAppSelector } from '../../store'
+
 
 export const ListUsers = ({ url, isChange, openModalWindow }: IPropsListUsers) => {
 
     const [users, setUsers] = useState<IUser[]>([]);
-    const { token } = useAppSelector(state => state.token);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         if(token) {

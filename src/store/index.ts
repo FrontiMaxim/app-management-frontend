@@ -1,12 +1,11 @@
 import {useDispatch, useSelector, TypedUseSelectorHook} from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import tokenReducer from './tokenSlice';
 import sessionSlice from './sessionSlice';
 import userSlice from './userSlice';
 
 const store = configureStore({
   reducer: {
-    token: tokenReducer,
+
     session: sessionSlice,
     user: userSlice
   },
