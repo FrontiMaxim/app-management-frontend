@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { removeUserInList } from "../store/listUserSlice";
+import { useAppDispatch } from "../store";
 
 interface IUserDeleteUser {
     deleteUser: (url: string, id_user: string, token: string) => Promise<void>;
@@ -10,6 +12,7 @@ interface IUserDeleteUser {
 export const useDeleteUser = ():IUserDeleteUser => {
 
     const [isErrorDelete, setIsErrorDelete] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
 
     async function deleteUser (url: string, id_user: string, token: string): Promise<void> {
         try {
@@ -22,6 +25,8 @@ export const useDeleteUser = ():IUserDeleteUser => {
                 }
             });
             setIsErrorDelete(false);
+            dispatch(removeUserInList(id_user));
+
         } catch (err) {
             setIsErrorDelete(true);
         }

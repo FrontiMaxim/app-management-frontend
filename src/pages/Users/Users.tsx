@@ -1,28 +1,29 @@
 import React, { useEffect } from 'react'
-import { DialogWindow, ListUsers, ModalWindow } from '../../components'
-import { useModalWindow } from '../../hooks/useModalWindow'
+import { Button, DialogWindow, ListUsers, ModalWindow } from '../../components'
 import FormUser from '../../components/FormUser/FormUser';
 import { useDialogWindow } from '../../hooks/useDialogWindow';
 import { useDeleteUser } from '../../hooks/useDeleteUser';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { closeModalWindow, openModalWindow } from '../../store/modalWindowSlice';
 
 export const Users = () => {
 
-    const { openModalWindow, 
-            closeModalWindow, 
-            dataForModalWindow, 
-            typeMoladWindow, 
-            isOpenDodalWindow }  = useModalWindow();
-
     const { isAgree, agree, disagree } = useDialogWindow();
+
     const { deleteUser, isErrorDelete } = useDeleteUser();
+
+    const { currentUser}  = useAppSelector(state => state.listUser);
+    const { isOpenModalWindow, typeModalWindow } = useAppSelector(state => state.modalWindow)
+
+    const dispatch = useAppDispatch();
 
     const token = localStorage.getItem('token');
 
     useEffect(() => {
 
         if(isAgree) {
-            deleteUser('/user/delete', dataForModalWindow!.id_user, token!);
-            closeModalWindow();
+            deleteUser('/user/delete', currentUser.id_user, token!);
+            dispatch(closeModalWindow());
             disagree();
         } 
 
@@ -31,20 +32,18 @@ export const Users = () => {
     return (
         <div>
             {
-                isOpenDodalWindow && typeMoladWindow !== 'DELETE_USER' &&
+                isOpenModalWindow && typeModalWindow !== 'DELETE_USER' &&
 
                 <ModalWindow>
                     <FormUser 
-                        url={ typeMoladWindow === 'CREATE_USER' ? '/user/create' : '/user/change'}
-                        closeModalWindow={closeModalWindow} 
-                        typeModalWindow={typeMoladWindow}
-                        dataModalWindow={dataForModalWindow}
+                        url={ typeModalWindow === 'CREATE_USER' ? '/user/create' : '/user/change'}
+                        typeModalWindow={typeModalWindow}
                     />
                 </ModalWindow>
             }
 
             {
-                isOpenDodalWindow && typeMoladWindow === 'DELETE_USER' &&
+                isOpenModalWindow && typeModalWindow === 'DELETE_USER' &&
 
                 <ModalWindow>
                     <DialogWindow 
@@ -55,7 +54,11 @@ export const Users = () => {
                 </ModalWindow>
             }
 
-            <ListUsers url='user/read/users' isChange={true} openModalWindow={openModalWindow}/>
+            <Button value='+ Добавить нового пользователя' onClick={() => {
+                dispatch(openModalWindow('CREATE_USER'));
+            }} />
+
+            <ListUsers url='user/read/users' isChange={true} />
         </div>
     )
 }

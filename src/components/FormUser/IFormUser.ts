@@ -1,5 +1,3 @@
-import { IUser } from "../../interfaces/IUser";
-
 export interface IDataUser {
     name: string;
     login: string;
@@ -8,8 +6,6 @@ export interface IDataUser {
 }
 
 export interface IPropsFormUser {
-    dataModalWindow: null | IUser;
     url: string;
     typeModalWindow: string;
-    closeModalWindow: () => void;
 }

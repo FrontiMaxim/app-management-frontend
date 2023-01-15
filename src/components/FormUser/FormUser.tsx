@@ -7,8 +7,10 @@ import { Option } from '../Select/ISelect';
 import { Button } from '../Button/Button';
 import { useCreateUser } from '../../hooks/useCreateUser';
 import { useChangeUser } from '../../hooks/useChangeUser';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { closeModalWindow } from '../../store/modalWindowSlice';
 
-const FormUser = ({ url, typeModalWindow, closeModalWindow, dataModalWindow } : IPropsFormUser) => {
+const FormUser = ({ url, typeModalWindow } : IPropsFormUser) => {
 
     const optionsRoles: Option[] = [
         {name: 'Администратор', value: 'ADMIN'},
@@ -16,12 +18,14 @@ const FormUser = ({ url, typeModalWindow, closeModalWindow, dataModalWindow } : 
         {name: 'Клиент', value: 'CLIENT'}
     ];
 
+    const { currentUser } = useAppSelector(state => state.listUser)
+    const dispatch = useAppDispatch();
+
     const { register, handleSubmit } = useForm<IDataUser>({
         defaultValues: {
-            name: dataModalWindow?.name,
-            login: dataModalWindow?.login,
+            name: currentUser.name,
+            login: currentUser.login,
             password: '',
-            role: dataModalWindow?.role
         }
     });
 
@@ -34,10 +38,10 @@ const FormUser = ({ url, typeModalWindow, closeModalWindow, dataModalWindow } : 
         if (typeModalWindow === 'CREATE_USER') {
             await createUser(url, data, token!);
         } else if (typeModalWindow === 'CHANGHE_USER') {
-            await changeUser(url, data, dataModalWindow!.id_user, token!);
+            await changeUser(url, data, currentUser.id_user, token!);
         }
         
-        closeModalWindow();
+        dispatch(closeModalWindow());
     }
 
     return (
@@ -82,7 +86,7 @@ const FormUser = ({ url, typeModalWindow, closeModalWindow, dataModalWindow } : 
 
                 <Button 
                     value='Отмена' 
-                    onClick={closeModalWindow}
+                    onClick={() => dispatch(closeModalWindow())}
                 />
 
                 {

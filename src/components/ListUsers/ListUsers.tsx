@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { IPropsListUsers } from './IListUsers'
 import { ItemListUsers } from './ItemListUsers/ItemListUsers'
-import { IUser } from '../../interfaces/IUser'
 import axios from 'axios'
+import { useAppDispatch, useAppSelector } from '../../store'
+import { downloadListUser } from '../../store/listUserSlice'
 
 
-export const ListUsers = ({ url, isChange, openModalWindow }: IPropsListUsers) => {
+export const ListUsers = ({ url, isChange }: IPropsListUsers) => {
 
-    const [users, setUsers] = useState<IUser[]>([]);
+    const { listUser } = useAppSelector(state => state.listUser);
+    const dispatch = useAppDispatch();
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -17,18 +19,17 @@ export const ListUsers = ({ url, isChange, openModalWindow }: IPropsListUsers) =
                     Authorization: `Bearer ${token}`
                 }
             })
-            .then(response => setUsers(response.data));
+            .then(response => dispatch(downloadListUser(response.data)));
         }
     }, [token, url]);
 
     return (
         <ul>
             {
-                users.map(user => <ItemListUsers 
+                listUser.map(user => <ItemListUsers 
                                     key={user.id_user}
                                     user={user} 
                                     isChange={isChange} 
-                                    openModalWindow={openModalWindow}
                                     />)
             }
         </ul>
