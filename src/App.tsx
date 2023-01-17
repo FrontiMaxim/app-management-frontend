@@ -5,6 +5,10 @@ import { useAppSelector } from './store';
 import { useSession } from './hooks/useSession';
 import { useBeforeunload } from 'react-beforeunload';
 import { Users } from './pages/Users/Users';
+import { ListObject } from './components/ListObject/ListObject';
+import { FormObject } from './components/FormObject/FormObject';
+import { ModeModalWindow } from './interfaces/IModalWindow';
+
 
 function App() {
 
@@ -34,6 +38,8 @@ function App() {
         }
         
         <Users />
+        <ListObject isChange/>
+        <FormObject mode={ModeModalWindow.CREATE} /> 
       </div>
     );
 }

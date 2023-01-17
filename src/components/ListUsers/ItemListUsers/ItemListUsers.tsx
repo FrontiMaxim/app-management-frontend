@@ -3,12 +3,14 @@ import { IPropsItemListUsers } from './IPropsItemListUsers'
 import { CardUser } from '../../CardUser/CardUser'
 import { Button } from '../../Button/Button'
 import { useAppDispatch } from '../../../store'
-import { openModalWindow } from '../../../store/modalWindowSlice'
+import { open } from '../../../store/modalWindowSlice'
 import { setCurrentUserFromList } from '../../../store/listUserSlice'
+import { ModeModalWindow } from '../../../interfaces/IModalWindow'
 
 export const ItemListUsers = ({ user, isChange }: IPropsItemListUsers) => {
 
   const dispatch = useAppDispatch();
+  const { CHANGE, DELETE } = ModeModalWindow;
 
   return (
     <li>
@@ -18,14 +20,14 @@ export const ItemListUsers = ({ user, isChange }: IPropsItemListUsers) => {
             isChange &&
             <div>
                 <Button value='редактировать' onClick={() => {
-                    dispatch(openModalWindow('CHANGHE_USER'));
+                    dispatch(open(CHANGE));
                     dispatch(setCurrentUserFromList(user));
                   }
                 }
                 />
 
                 <Button value='удалить' onClick={() => {
-                    dispatch(openModalWindow('DELETE_USER'));
+                    dispatch(open(DELETE));
                     dispatch(setCurrentUserFromList(user));
                   }
                 }

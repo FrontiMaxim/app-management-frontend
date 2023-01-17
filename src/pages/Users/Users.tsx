@@ -4,7 +4,8 @@ import FormUser from '../../components/FormUser/FormUser';
 import { useDialogWindow } from '../../hooks/useDialogWindow';
 import { useDeleteUser } from '../../hooks/useDeleteUser';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { closeModalWindow, openModalWindow } from '../../store/modalWindowSlice';
+import { close, open } from '../../store/modalWindowSlice';
+import { ModeModalWindow } from '../../interfaces/IModalWindow';
 
 export const Users = () => {
 
@@ -12,8 +13,10 @@ export const Users = () => {
 
     const { deleteUser, isErrorDelete } = useDeleteUser();
 
+    const { CREATE, DELETE } = ModeModalWindow;
+
     const { currentUser}  = useAppSelector(state => state.listUser);
-    const { isOpenModalWindow, typeModalWindow } = useAppSelector(state => state.modalWindow)
+    const { isOpen, mode } = useAppSelector(state => state.modalWindow)
 
     const dispatch = useAppDispatch();
 
@@ -23,7 +26,7 @@ export const Users = () => {
 
         if(isAgree) {
             deleteUser('/user/delete', currentUser.id_user, token!);
-            dispatch(closeModalWindow());
+            dispatch(close());
             disagree();
         } 
 
@@ -32,30 +35,29 @@ export const Users = () => {
     return (
         <div>
             {
-                isOpenModalWindow && typeModalWindow !== 'DELETE_USER' &&
+                isOpen && mode !== DELETE &&
 
                 <ModalWindow>
                     <FormUser 
-                        url={ typeModalWindow === 'CREATE_USER' ? '/user/create' : '/user/change'}
-                        typeModalWindow={typeModalWindow}
+                        mode={ mode }
                     />
                 </ModalWindow>
             }
 
             {
-                isOpenModalWindow && typeModalWindow === 'DELETE_USER' &&
+                isOpen && mode === DELETE &&
 
                 <ModalWindow>
                     <DialogWindow 
                         question='Вы уверены, что хоитите удалить пользователя'
                         agree={agree}
-                        disagree={closeModalWindow}
+                        disagree={close}
                     />
                 </ModalWindow>
             }
 
             <Button value='+ Добавить нового пользователя' onClick={() => {
-                dispatch(openModalWindow('CREATE_USER'));
+                dispatch(open(CREATE));
             }} />
 
             <ListUsers url='user/read/users' isChange={true} />

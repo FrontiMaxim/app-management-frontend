@@ -1,4 +1,10 @@
+export enum ModeModalWindow {
+    CREATE,
+    CHANGE,
+    DELETE
+}
+
 export interface IModalWindow {
-    isOpenModalWindow: boolean;
-    typeModalWindow: string;
+    isOpen: boolean;
+    mode: ModeModalWindow;
 }

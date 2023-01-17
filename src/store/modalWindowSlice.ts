@@ -1,26 +1,26 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IModalWindow } from '../interfaces/IModalWindow';
+import { IModalWindow, ModeModalWindow } from '../interfaces/IModalWindow';
 
 const initialState:IModalWindow = {
-  isOpenModalWindow: false,
-  typeModalWindow: ''
+  isOpen: false,
+  mode: ModeModalWindow.CREATE
 };
   
 const modalWindowSlice = createSlice({
   name: 'modalWindow',
   initialState,
   reducers: {
-    openModalWindow(state, action: PayloadAction<string>) {
-        state.isOpenModalWindow = true;
-        state.typeModalWindow = action.payload;
+    open(state, action: PayloadAction<ModeModalWindow>) {
+        state.isOpen = true;
+        state.mode = action.payload;
     },
-    closeModalWindow(state) {
-        state.isOpenModalWindow = false;
-        state.typeModalWindow = '';
+    close(state) {
+        state.isOpen = false;
+        state.mode = ModeModalWindow.CREATE;
     }
   },
 });
 
-export const { openModalWindow, closeModalWindow} = modalWindowSlice.actions;
+export const { open, close} = modalWindowSlice.actions;
 
 export default modalWindowSlice.reducer;

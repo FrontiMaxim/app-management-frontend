@@ -8,9 +8,12 @@ import { Button } from '../Button/Button';
 import { useCreateUser } from '../../hooks/useCreateUser';
 import { useChangeUser } from '../../hooks/useChangeUser';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { closeModalWindow } from '../../store/modalWindowSlice';
+import { close } from '../../store/modalWindowSlice';
+import { ModeModalWindow } from '../../interfaces/IModalWindow';
 
-const FormUser = ({ url, typeModalWindow } : IPropsFormUser) => {
+const FormUser = ({ mode } : IPropsFormUser) => {
+
+    const { CREATE, CHANGE } = ModeModalWindow;
 
     const optionsRoles: Option[] = [
         {name: 'Администратор', value: 'ADMIN'},
@@ -35,19 +38,22 @@ const FormUser = ({ url, typeModalWindow } : IPropsFormUser) => {
 
     const submit = async (data: IDataUser): Promise<void> => {
 
-        if (typeModalWindow === 'CREATE_USER') {
-            await createUser(url, data, token!);
-        } else if (typeModalWindow === 'CHANGHE_USER') {
-            await changeUser(url, data, currentUser.id_user, token!);
+        if (mode === CREATE) {
+            await createUser('/user/create', data, token!);
+        } else if (mode === CHANGE) {
+            await changeUser('/user/change', data, currentUser.id_user, token!);
         }
         
-        dispatch(closeModalWindow());
+        dispatch(close());
     }
 
     return (
         <>
             {
-                typeModalWindow === 'CREATE_USER' ?  <h1>Создание пользователя</h1> : <h1>Изменение пользователя</h1>
+                mode === CREATE && <h1>Создание пользователя</h1>
+            }
+            {
+                mode === CHANGE && <h1>Изменение пользователя</h1>
             }
             <form>
                 <FieldText 
@@ -80,13 +86,13 @@ const FormUser = ({ url, typeModalWindow } : IPropsFormUser) => {
                 />
 
                 <Button 
-                    value={typeModalWindow === 'CREATE_USER' ? 'Создать пользователя' : 'Сохранить изменения'} 
+                    value={mode === CREATE ? 'Создать пользователя' : 'Сохранить изменения'} 
                     onClick={handleSubmit(submit)}
                 />
 
                 <Button 
                     value='Отмена' 
-                    onClick={() => dispatch(closeModalWindow())}
+                    onClick={() => dispatch(close())}
                 />
 
                 {

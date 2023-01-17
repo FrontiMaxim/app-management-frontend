@@ -1,3 +1,5 @@
+import { ModeModalWindow } from "../../interfaces/IModalWindow";
+
 export interface IDataUser {
     name: string;
     login: string;
@@ -6,6 +8,5 @@ export interface IDataUser {
 }
 
 export interface IPropsFormUser {
-    url: string;
-    typeModalWindow: string;
+    mode: ModeModalWindow;
 }
