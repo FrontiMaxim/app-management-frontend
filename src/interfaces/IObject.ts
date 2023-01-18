@@ -1,9 +1,5 @@
 import { IUser } from "./IUser";
 
-// для призмы
-interface UserToConnect{
-    id_user: string;
-}
 
 export interface IObject {
     id_object: string;
@@ -14,6 +10,6 @@ export interface IObject {
     note: string;
     data_start: string;
     client: string;
-    users?: IUser[] | UserToConnect[];
+    users?: IUser[] | string[];
 }
 

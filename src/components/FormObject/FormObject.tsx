@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import { FieldText } from '../FieldText/FieldText'
 import { useForm } from 'react-hook-form';
 import { Button } from '../Button/Button';
@@ -6,15 +6,28 @@ import { IObject } from '../../interfaces/IObject';
 import { IPropsFormObject } from './IFormObject';
 import { Calendar } from '../Calendar/Calendar';
 import { useMutation, useQueryClient } from 'react-query';
-import { createObject } from '../../services/objectService';
+import { createObject, updateObject } from '../../services/objectService';
 import { FieldNumber } from '../FieldNumber/FieldNumber';
 import { ModeModalWindow } from '../../interfaces/IModalWindow';
+import { MultiSelectUser } from '../MultiSelectUser/MultiSelectUser';
+import { IUser } from '../../interfaces/IUser';
+import { useAppSelector } from '../../store';
 
-export const FormObject = ({ mode } : IPropsFormObject) => {
+export const FormObject = ({ mode, defaultData, closeModalWindow } : IPropsFormObject) => {
 
-    const { register, handleSubmit } = useForm<IObject>();
+    const { register, handleSubmit } = useForm<IObject>({
+        defaultValues: {
+            ...defaultData,
+            users: defaultData?.users?.map((user: IUser | string) => {
+                user = user as IUser;
+                return user.id_user
+            })
+        }
+    });
 
     const { CREATE, CHANGE } = ModeModalWindow;
+
+    const { listUser } = useAppSelector(state => state.listUser);
 
     const token = localStorage.getItem('token');
 
@@ -29,7 +42,7 @@ export const FormObject = ({ mode } : IPropsFormObject) => {
     })
 
     const update = useMutation((object: IObject) => {
-        return createObject('/object/update', object, token!);
+        return updateObject('/object/update', object, token!);
     }, {
         onSuccess() {
             queryClient.invalidateQueries('objects');
@@ -37,7 +50,21 @@ export const FormObject = ({ mode } : IPropsFormObject) => {
     })
 
     const submit = async (data: IObject): Promise<void> => {
+       
+        if(data.users) {
+            const users: IUser[] = [];
+            for(let id_user of data.users) {
+                for(let user of listUser) {
+                    if(id_user === user.id_user) {
+                        users.push(user);
+                    }
+                }
+            }
+           
+            data.users = users;
+        }
 
+        
         if(data.apartment) {
             data.apartment = Number(data.apartment);
         } else {
@@ -50,7 +77,9 @@ export const FormObject = ({ mode } : IPropsFormObject) => {
             update.mutate(data);
         }
  
-        //dispatch(closeModalWindow());
+        if(closeModalWindow) {
+            closeModalWindow();
+        }
     }
 
     return (
@@ -108,24 +137,18 @@ export const FormObject = ({ mode } : IPropsFormObject) => {
                     minLength={8} 
                     maxLength={14}
                 />
+
+                <MultiSelectUser register={register('users')} />
               
                 <Button 
-                    value='submit'
+                    value={mode === CREATE ? 'Создать' : 'Сохранить изменения'}
                     onClick={handleSubmit(submit)}
                 />
 
-                {/* <Button 
+                <Button 
                     value='Отмена' 
-                    onClick={() => dispatch(closeModalWindow())}
+                    onClick={() => closeModalWindow && closeModalWindow()}
                 />
-
-                {
-                    isErrorCreate && 'Данный пользователь уже существует'
-                }
-                {
-                    isErrorChange && 'Не удалось сохранить изменения'
-                } */}
-                
             </form>
         </>
     )

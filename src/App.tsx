@@ -32,10 +32,10 @@ function App() {
 
     return (
       <div>
-        <Login />
+        {/* <Login />
         {
           isErrorOpenSession && 'Не удалось создать сессию для работы в системе'
-        }
+        } */}
         
         <Users />
         <ListObject isChange/>

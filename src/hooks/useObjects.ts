@@ -21,11 +21,10 @@ export const useObjects = (): IUseObjects => {
         }
     );
 
-
     return {
         objects,
         isLoading,
         isError,
-        isSuccess
+        isSuccess,
     }
 }

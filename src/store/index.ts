@@ -4,7 +4,6 @@ import sessionSlice from './sessionSlice';
 import userSlice from './userSlice';
 import listUserSlice from './listUserSlice';
 import modalWindowSlice from './modalWindowSlice';
-import listObjectSlice from './listObjectSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,7 +11,6 @@ const store = configureStore({
     user: userSlice,
     listUser: listUserSlice,
     modalWindow: modalWindowSlice,
-    listObject: listObjectSlice
   },
 });
 
