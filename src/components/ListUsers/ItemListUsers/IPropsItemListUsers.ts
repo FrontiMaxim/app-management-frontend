@@ -1,6 +1,6 @@
 import { IUser } from "../../../interfaces/IUser";
-import { IPropsList } from "../common/IPropsList";
 
-export interface IPropsItemListUsers extends IPropsList{
-    user: IUser;
+export interface IPropsItemListUsers {
+    data: IUser;
+    isChange: boolean
 }

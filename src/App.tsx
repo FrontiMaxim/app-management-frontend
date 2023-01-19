@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import './App.scss';
-import { Login } from './pages';
-import { useAppSelector } from './store';
+import { Login, Objects } from './pages';
+import { useAppDispatch, useAppSelector } from './store';
 import { useSession } from './hooks/useSession';
 import { useBeforeunload } from 'react-beforeunload';
 import { Users } from './pages/Users/Users';
-import { ListObject } from './components/ListObject/ListObject';
-import { FormObject } from './components/FormObject/FormObject';
-import { ModeModalWindow } from './interfaces/IModalWindow';
-
+import { useUser } from './hooks/useUser';
+import { setListUser } from './store/listUserSlice';
 
 function App() {
 
@@ -16,6 +14,10 @@ function App() {
     const session = useAppSelector(state => state.session);
 
     const token = localStorage.getItem('token');
+
+    const dispatch = useAppDispatch();
+
+    const { users } = useUser();
   
     // кастомный хук с npm на закрытие всего приложения, чтобы отпрваить серверу об закрытии сессии
     useBeforeunload(() => {
@@ -30,6 +32,12 @@ function App() {
       }
     }, []);
 
+    useEffect(() => {
+      if(users) {
+        dispatch(setListUser(users));
+      }
+    }, [users])
+
     return (
       <div>
         {/* <Login />
@@ -38,8 +46,7 @@ function App() {
         } */}
         
         <Users />
-        <ListObject isChange/>
-        <FormObject mode={ModeModalWindow.CREATE} /> 
+        <Objects />
       </div>
     );
 }

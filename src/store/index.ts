@@ -3,14 +3,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import sessionSlice from './sessionSlice';
 import userSlice from './userSlice';
 import listUserSlice from './listUserSlice';
-import modalWindowSlice from './modalWindowSlice';
 
 const store = configureStore({
   reducer: {
     session: sessionSlice,
     user: userSlice,
     listUser: listUserSlice,
-    modalWindow: modalWindowSlice,
   },
 });
 

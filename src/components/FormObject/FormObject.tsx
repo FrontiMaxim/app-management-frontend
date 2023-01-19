@@ -31,7 +31,7 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : IPropsFormO
 
     const token = localStorage.getItem('token');
 
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
     const create = useMutation((object: IObject) => {
         return createObject('/object/create', object, token!);

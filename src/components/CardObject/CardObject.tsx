@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './CardObject.module.scss';
 import { IPropsCardObject } from './ICardObject';
+import { AvatarGroup } from '../AvatarGroup/AvatarGroup';
+import { IUser } from '../../interfaces/IUser';
 
 export const CardObject = ({ city, street, house, apartment, note, data_start, client, users }: IPropsCardObject) => {
     return (
@@ -22,6 +24,10 @@ export const CardObject = ({ city, street, house, apartment, note, data_start, c
             <div>
                 Дата запуска проекта: {data_start}
             </div>
+            {
+                users && <AvatarGroup users={users as IUser[]} />
+            }
+            
         </div>
     )
 }

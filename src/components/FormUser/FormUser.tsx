@@ -1,17 +1,16 @@
 import React  from 'react'
 import { FieldText } from '../FieldText/FieldText'
 import { useForm } from 'react-hook-form';
-import { IDataUser, IPropsFormUser } from './IFormUser';
+import { IPropsFormUser } from './IFormUser';
 import { Select } from '../Select/Select';
 import { Option } from '../Select/ISelect';
 import { Button } from '../Button/Button';
-import { useCreateUser } from '../../hooks/useCreateUser';
-import { useChangeUser } from '../../hooks/useChangeUser';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { close } from '../../store/modalWindowSlice';
 import { ModeModalWindow } from '../../interfaces/IModalWindow';
+import { IUser } from '../../interfaces/IUser';
+import { useMutation, useQueryClient } from 'react-query';
+import { createUser, updateUser } from '../../services/userService';
 
-const FormUser = ({ mode } : IPropsFormUser) => {
+const FormUser = ({ mode, defaultData, closeModalWindow } : IPropsFormUser) => {
 
     const { CREATE, CHANGE } = ModeModalWindow;
 
@@ -21,30 +20,46 @@ const FormUser = ({ mode } : IPropsFormUser) => {
         {name: 'Клиент', value: 'CLIENT'}
     ];
 
-    const { currentUser } = useAppSelector(state => state.listUser)
-    const dispatch = useAppDispatch();
-
-    const { register, handleSubmit } = useForm<IDataUser>({
+    const { register, handleSubmit } = useForm<IUser>({
         defaultValues: {
-            name: currentUser.name,
-            login: currentUser.login,
-            password: '',
+            ...defaultData,
+            password: ''
         }
     });
 
-    const { createUser, isErrorCreate } = useCreateUser();
-    const { changeUser, isErrorChange } = useChangeUser();
+    const queryClient = useQueryClient();
+
+    const create = useMutation((user: IUser) => {
+        return createUser('/user/create', user, token!);
+    }, {
+        onSuccess() {
+            queryClient.invalidateQueries('users');
+        }
+    })
+
+    const update = useMutation((user: IUser) => {
+        return updateUser('/user/update', user, token!);
+    }, {
+        onSuccess() {
+            queryClient.invalidateQueries('users');
+        }
+    })
+
     const token = localStorage.getItem('token');
 
-    const submit = async (data: IDataUser): Promise<void> => {
+    const submit = async (data: IUser): Promise<void> => {
+
+        console.log(data)
 
         if (mode === CREATE) {
-            await createUser('/user/create', data, token!);
+            create.mutate(data);
         } else if (mode === CHANGE) {
-            await changeUser('/user/change', data, currentUser.id_user, token!);
+            update.mutate(data);
         }
         
-        dispatch(close());
+        if(closeModalWindow) {
+            closeModalWindow();
+        }
     }
 
     return (
@@ -92,16 +107,8 @@ const FormUser = ({ mode } : IPropsFormUser) => {
 
                 <Button 
                     value='Отмена' 
-                    onClick={() => dispatch(close())}
+                    onClick={() => closeModalWindow && closeModalWindow()}
                 />
-
-                {
-                    isErrorCreate && 'Данный пользователь уже существует'
-                }
-                {
-                    isErrorChange && 'Не удалось сохранить изменения'
-                }
-                
             </form>
         </>
     )

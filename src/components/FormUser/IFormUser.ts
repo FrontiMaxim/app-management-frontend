@@ -1,12 +1,8 @@
 import { ModeModalWindow } from "../../interfaces/IModalWindow";
-
-export interface IDataUser {
-    name: string;
-    login: string;
-    password: string;
-    role: string;
-}
+import { IUser } from "../../interfaces/IUser";
 
 export interface IPropsFormUser {
     mode: ModeModalWindow;
+    defaultData?: IUser;
+    closeModalWindow?: () => void;
 }

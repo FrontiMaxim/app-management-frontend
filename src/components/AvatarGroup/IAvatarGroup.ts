@@ -1,6 +1,5 @@
 import { IUser } from "../../interfaces/IUser";
 
-export interface IPropsListUsers {
+export interface IPropsAvatarGroup {
     users: IUser[];
-    isChange: boolean;
 }

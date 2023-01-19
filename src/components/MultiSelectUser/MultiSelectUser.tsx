@@ -1,28 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { BiDownArrow } from 'react-icons/bi'
 import { IPropsMultiSelectUser } from './IMultiSelectUser'
 import { CardUser } from '../CardUser/CardUser'
 import { useUser } from '../../hooks/useUser'
 import CheckBox from '../CheckBox/CheckBox'
+import styles from './MultiSelectUser.module.scss';
 
 export const MultiSelectUser = ({ register }: IPropsMultiSelectUser) => {
     const {users} = useUser()
 
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
     return (
-        <div>
-            <div>
+        <div className={styles.multi_select}>
+            <div className={styles.head}>
                 <span>Список пользователей</span>
-                <i className="bx bx-chevron-down"></i>
+                <BiDownArrow  className={styles.arrow} onClick={() => setIsOpen(prev => !prev)}/>
             </div>
-            <ul>
-                {
-                    users?.map((user) => 
-                    <li key={user.id_user}>
-                        <CardUser {...user} />
-                        <CheckBox register={register} value={user.id_user}/>
-                    </li>)
-                }
-                
-            </ul>
+            {
+                isOpen &&
+                <ul className={styles.list}>
+                    {
+                        users?.map((user) => 
+                        <li key={user.id_user}>
+                            <CardUser {...user} />
+                            <CheckBox register={register} value={user.id_user}/>
+                        </li>)
+                    }
+                </ul>
+            }
         </div>       
     )
 }

@@ -5,6 +5,7 @@ const initialState: IUser = {
   id_user: '',
   name: '',
   login: '',
+  password: '',
   is_online: false,
   avatar: '',
   role: '',
