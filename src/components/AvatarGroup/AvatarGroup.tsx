@@ -20,8 +20,8 @@ export const AvatarGroup = ({ users }: IPropsAvatarGroup ) => {
         {
             users.map(user => <li key={user.id_user} className={styles.item}>
                                 <div className={styles.information}>
-                                    <div>ФИО: {user.name}</div>
-                                    <div>
+                                    <div className={styles.name}>{user.name}</div>
+                                    <div className={styles.role}>
                                       { roles[user.role] }
                                     </div>
                                 </div>

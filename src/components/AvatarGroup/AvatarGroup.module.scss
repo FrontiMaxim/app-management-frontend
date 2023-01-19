@@ -15,6 +15,7 @@
     
             .information {
                 position: absolute;
+                white-space: nowrap;
                 bottom: calc(100%);
                 background-color: rgba(0, 0, 0, .7);
                 padding: 3px 5px;
@@ -22,6 +23,15 @@
                 visibility: hidden;
                 opacity: 0;
                 transition: .2s;
+
+                .name {
+                    font-size: 14px;
+                }
+
+                .role {
+                    font-size: 12px;
+                    font-weight: bold;
+                }
             }
     
             .avatar {

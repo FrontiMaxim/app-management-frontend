@@ -10,6 +10,9 @@ import { deleteUser } from '../../../services/userService'
 import { ModalWindow } from '../../ModalWindow/ModalWindow'
 import FormUser from '../../FormUser/FormUser'
 import { DialogWindow } from '../../DialogWindow/DialogWindow'
+import styles from './ItemListUsers.module.scss';
+import { FaPen, FaTrash } from 'react-icons/fa';
+import cn from 'classnames';
 
 export const ItemListUsers = ({ data, isChange }: IPropsItemListUsers) => {
 
@@ -56,19 +59,19 @@ export const ItemListUsers = ({ data, isChange }: IPropsItemListUsers) => {
                 />
             </ModalWindow>
         }
-        <li>
+        <li className={styles.item_list}>
 
           <CardUser {...data} />
 
           {
-              isChange &&
-              <div>
-                <div>
-                    <Button value='редактировать' onClick={modalWindowforForm.open}/>
+            isChange &&
+             
+            <div className={styles.group_btn}>
+                <FaPen  className={styles.btn} onClick={modalWindowforForm.open} title='Редактировать'/>
 
-                    <Button value='удалить' onClick={modalWindowforDialog.open}/>
-                </div>
-              </div>
+                <FaTrash  className={cn(styles.btn, styles.delete)} onClick={modalWindowforDialog.open} title='Удалить'/>
+            </div>
+             
           }
       </li>  
     </>
