@@ -7,6 +7,7 @@ import { useBeforeunload } from 'react-beforeunload';
 import { Users } from './pages/Users/Users';
 import { useUser } from './hooks/useUser';
 import { setListUser } from './store/listUserSlice';
+import { Tasks } from './pages/Tasks/Tasks';
 
 function App() {
 
@@ -40,13 +41,14 @@ function App() {
 
     return (
       <div>
-        {/* <Login />
+        <Login />
         {
           isErrorOpenSession && 'Не удалось создать сессию для работы в системе'
-        } */}
+        }
         
-        <Users />
-        <Objects />
+        {/* <Users />
+        <Objects /> */}
+        <Tasks />
       </div>
     );
 }
