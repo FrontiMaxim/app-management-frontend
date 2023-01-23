@@ -1,0 +1,22 @@
+.tag {
+    padding: 5px 15px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.scheduled {
+    background-color: rgba($color: #e79871, $alpha: .3);
+    color: #e79871;
+} 
+
+.on_progres {
+    background-color: rgba($color: #4c64d0, $alpha: .3);
+    color: #4c64d0;
+}
+
+.complete {
+    background-color: rgba($color: #48a21c, $alpha: .3);
+    color: #48a21c;
+}

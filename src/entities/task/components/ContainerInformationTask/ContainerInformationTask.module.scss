@@ -1,0 +1,17 @@
+.container {
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover:not(:first-child) {
+        transform: translateY(-4px);
+    }
+
+    .information {
+        margin-left: 4px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}
