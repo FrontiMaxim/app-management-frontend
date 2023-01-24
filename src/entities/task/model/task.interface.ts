@@ -7,7 +7,7 @@ export interface ITask {
     deadline: string;
     description: string;
     object: IObject;
-    user?: IUser | null; 
+    user?: IUser; 
     status: IStatus;
     comments?: IComment[];
     resources?: IResource[];

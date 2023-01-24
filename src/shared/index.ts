@@ -5,3 +5,7 @@ export * from './components/Button/Button';
 export * from './components/ModalWindow/ModalWindow';
 export * from './lib/hooks/useModalWindow';
 export * from './lib/utils/formatDate';
+export * from './components/CardUser/CardUser';
+export * from './components/SelectUser/SelectUser';
+export * from './components/Dialog/Dialog';
+export * from './lib/hooks/useDialog';

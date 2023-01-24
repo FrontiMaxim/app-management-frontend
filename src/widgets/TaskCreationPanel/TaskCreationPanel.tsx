@@ -3,8 +3,9 @@ import { BsPlusCircleFill } from 'react-icons/bs';
 import { ModalWindow, useModalWindow } from '../../shared';
 import { FormTask } from '../../entities/task';
 import styles from './TaskCreationPanel.module.scss';
+import { PropsTaskCreationPanel } from './TaskCreationPanel.props';
 
-export const TaskCreationPanel = () => {
+export const TaskCreationPanel = ({ currentObject }: PropsTaskCreationPanel) => {
 
     const {isOpen, open, close} = useModalWindow();
 
@@ -20,7 +21,7 @@ export const TaskCreationPanel = () => {
             {
                 isOpen &&
                 <ModalWindow>
-                    <FormTask mode='CREATE' closeModalWindow={close} />
+                    <FormTask mode='CREATE' closeModalWindow={close} currentObject={currentObject} />
                 </ModalWindow>
             }
         </div>

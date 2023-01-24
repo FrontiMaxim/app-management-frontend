@@ -4,32 +4,51 @@ import { ITask } from '../../model/task.interface';
 import { useCreateTask } from '../../lib/hooks/useCreateTask';
 import { FieldText } from '../../../../components';
 import { PropsFormTask } from './FormTask.props';
-import { Button, Calendar, TextArea, formatDate } from '../../../../shared';
+import { Button, Calendar, SelectUser, TextArea, formatDate } from '../../../../shared';
+import { filterUsersByRole } from '../../lib/utils/filterUsersByRole';
+import { useUpdateTask } from '../../lib/hooks/useUpdateTask';
+import { useParticipant } from '../../lib/hooks/useParticipant';
 
-export const FormTask = ({ mode, defaultData, closeModalWindow }: PropsFormTask) => {
+export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }: PropsFormTask) => {
     
     const { register, handleSubmit } = useForm<ITask>({
         defaultValues: {
             ...defaultData,
-            user: { id_user: defaultData?.user?.id_user }
+            user: { id_user: defaultData?.user?.id_user },
+            // приводим дату к формату YYYY-MM-DD
+            deadline: formatDate(defaultData?.deadline ? defaultData.deadline : '', 'STANDART')
         }
     });
 
-    const [create] = useCreateTask();
+    const { participants, isLoading } = useParticipant(currentObject.id_object);
 
-    // const { listUser } = useAppSelector(state => state.listUser);
+    const [create] = useCreateTask();
+    const [update] = useUpdateTask();
 
     const submit = async (data: ITask): Promise<void> => {
 
-        data.deadline = formatDate(data.deadline);
+        // приводим дату к формату DD.MM.YYYY
+        data.deadline = formatDate(data.deadline, 'LOCAL');
 
-        console.log(data);
+        // указываем текущий объект, у котрого работаем с задачами
+        data.object = currentObject;
+
+         // если у задачи ещё не было статуса, то её присваивается "Запланировано", иначе оставляем прежний
+        if(!data.status) {
+            data.status = {id_status: 1, name: 'SCHEDULED'};
+        }
        
-        // if(mode === 'CREATE') {
-        //     create(data);
-        // } else if (mode === 'CHANGE') {
-        //     // update.mutate(data);
-        // }
+        // указываем исполнителя для задачи
+        if(participants) {
+            const id_user: string = String(data.user);
+            data.user = participants.find(user => user.id_user === id_user);
+        }
+       
+        if(mode === 'CREATE') {
+            create(data);
+        } else if (mode === 'CHANGE') {
+            update(data);
+        }
  
         if(closeModalWindow) {
             closeModalWindow();
@@ -39,10 +58,10 @@ export const FormTask = ({ mode, defaultData, closeModalWindow }: PropsFormTask)
     return (
         <>
             {
-                mode === 'CREATE' &&  <h1>Создание объекта</h1>
+                mode === 'CREATE' &&  <h1>Создание новой задачи</h1>
             }
             {
-                mode === 'CHANGE' &&  <h1>Изменение объекта</h1>
+                mode === 'CHANGE' &&  <h1>Изменение задачи</h1>
             }
             <form>
                 <FieldText 
@@ -57,7 +76,17 @@ export const FormTask = ({ mode, defaultData, closeModalWindow }: PropsFormTask)
 
                 <Calendar  register={register} nameField='deadline' />
               
-                {/* <MultiSelectUser register={register('users')} /> */}
+                {
+                    isLoading ?
+                    <div>Загрузка исполнителей по данному объекту...</div>
+                    : 
+                    participants &&
+                    <SelectUser 
+                        register={register('user')}  
+                        users={filterUsersByRole(participants, 'DESIGNER', 'ADMIN')} 
+                        nameList='Список исполнителей'
+                    />
+                }
               
                 <Button 
                     value={mode === 'CREATE' ? 'Создать' : 'Сохранить изменения'}

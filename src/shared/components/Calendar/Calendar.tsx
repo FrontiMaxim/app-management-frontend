@@ -1,7 +1,7 @@
 import React from 'react'
-import { IPropsCalendar } from './ICalendar'
+import { PropsCalendar } from './Calendar.props'
 
-export const Calendar = ({ register, nameField, ...props } : IPropsCalendar) => {
+export const Calendar = ({ register, nameField, ...props } : PropsCalendar) => {
   return (
     <input 
       type='date' 
