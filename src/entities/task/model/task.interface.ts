@@ -1,4 +1,5 @@
 import { IObject } from "../../object";
+import { IResource } from "../../resource";
 import { IUser } from "../../user";
 
 export interface ITask {
@@ -18,12 +19,6 @@ interface IComment {
     content: string;
     data: string
     user: IUser;
-}
-
-interface IResource {
-    id_resource: string;
-    name: string;
-    link: string;
 }
 
 interface IStatus {

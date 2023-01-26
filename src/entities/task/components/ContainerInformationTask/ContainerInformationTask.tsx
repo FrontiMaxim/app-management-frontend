@@ -13,10 +13,10 @@ export const ContainerInformationTask = ({ typeInformation, title, information }
             icon = <BsFillCalendarFill size={14} fill='#5e72d9' />;
             break;
         case 'RESOURCES':
-            icon = <AiOutlineFile  />;
+            icon = <AiOutlineFile  size={17} />;
             break;
         case 'COMMENTS':
-            icon = <AiOutlineComment />;
+            icon = <AiOutlineComment size={17} />;
             break;       
     }
 
@@ -25,7 +25,9 @@ export const ContainerInformationTask = ({ typeInformation, title, information }
             {
                 icon
             }
-            <span className={styles.information}>{information}</span>
+            {
+                information &&  <span className={styles.information}>{information}</span>
+            }
         </div>
     )
 }

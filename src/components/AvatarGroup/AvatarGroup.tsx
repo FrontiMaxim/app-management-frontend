@@ -25,7 +25,7 @@ export const AvatarGroup = ({ users }: IPropsAvatarGroup ) => {
                                       { roles[user.role] }
                                     </div>
                                 </div>
-                                <img src={user.avatar} alt='аватарка' className={styles.avatar} />
+                                <img src={`avatars/${user.avatar}`} alt='аватарка' className={styles.avatar} />
                               </li>)  
         }
       </ul>

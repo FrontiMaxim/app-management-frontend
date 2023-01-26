@@ -1,0 +1,23 @@
+.card {
+    display: inline-block;
+    position: relative;
+
+    margin-top: 20px;
+
+    &:not(:first-child) {
+        margin-left: 20px;
+    }
+
+    .btn_delete {
+        position: absolute;
+        left: calc(50% + 5px);
+        bottom: 70%;
+        fill: red;
+        cursor: pointer;
+        transition: all .2s;
+
+        &:hover {
+            transform: translateY(-4px);
+        }
+    }
+}

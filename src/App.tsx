@@ -8,6 +8,10 @@ import { Users } from './pages/Users/Users';
 import { useUser } from './hooks/useUser';
 import { setListUser } from './store/listUserSlice';
 import { Tasks } from './pages/Tasks/Tasks';
+import axios from 'axios';
+import Dropzone from 'react-dropzone';
+import { ListResource } from './entities/resource';
+import { PanelResource } from './widgets';
 
 function App() {
 
@@ -45,10 +49,14 @@ function App() {
         {
           isErrorOpenSession && 'Не удалось создать сессию для работы в системе'
         }
-        
-        {/* <Users />
+        {/*         
+        <Users />
         <Objects /> */}
-        <Tasks />
+        {/* <Tasks /> */}
+        
+       
+      
+        <PanelResource id_task='8984aea0-b881-4ed2-8cf4-096ca1707b7e'/>
       </div>
     );
 }

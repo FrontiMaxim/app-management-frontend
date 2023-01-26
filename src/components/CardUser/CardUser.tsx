@@ -20,7 +20,7 @@ export const CardUser = ({ avatar, name, role, is_online }: IPropsCardUser) => {
                 {
                     is_online && <div className={styles.indicator}></div>
                 }
-                <img className={styles.avatar} src={avatar} alt='аватар'/>
+                <img className={styles.avatar} src={`avatars/${avatar}`} alt='аватар'/>
             </div>
             <div className={styles.information}>
                 <div className={styles.name}>

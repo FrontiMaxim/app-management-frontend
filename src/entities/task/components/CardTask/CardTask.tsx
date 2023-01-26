@@ -83,20 +83,18 @@ export const CardTask = ({ task }: PropsCardTask) => {
               <ContainerInformationTask 
                 typeInformation='COMMENTS' 
                 title='Комментарии' 
-                information={task.comments ? task.comments.length : 0} 
               />
 
               <ContainerInformationTask 
                 typeInformation='RESOURCES' 
                 title='Файлы' 
-                information={task.resources ? task.resources.length : 0} 
               />
             
               {
                 task.user &&
                 <div className={styles.container_user} title='Исполнитель'>
                   <span className={styles.name}>{task.user.name}</span>
-                  <img className={styles.avatar} src={task.user.avatar} alt="аватарка" />
+                  <img className={styles.avatar} src={`avatars/${task.user.avatar}`} alt="аватарка" />
                 </div>
               }
             </div>

@@ -1,0 +1,21 @@
+.card {
+
+    display: inline-block;
+
+    .link_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+        
+        
+        .name {
+            margin-top: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #000;
+        }
+    }
+}
