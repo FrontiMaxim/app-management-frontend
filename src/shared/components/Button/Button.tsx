@@ -1,10 +1,10 @@
 import React from 'react'
 import { PropsButton } from './Button.props'
 
-export const Button = ({ value, ...props }: PropsButton) => {
+export const Button = ({ children, ...props }: PropsButton) => {
   return (
     <>
-      <button {...props}>{value}</button>
+      <button {...props}>{children}</button>
     </>
   )
 }

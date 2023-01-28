@@ -11,7 +11,8 @@ import { Tasks } from './pages/Tasks/Tasks';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { ListResource } from './entities/resource';
-import { PanelResource } from './widgets';
+import { PanelComment, PanelResource } from './widgets';
+import { ListComment } from './entities/comment';
 
 function App() {
 
@@ -55,8 +56,9 @@ function App() {
         {/* <Tasks /> */}
         
        
-      
+        <Users />
         <PanelResource id_task='8984aea0-b881-4ed2-8cf4-096ca1707b7e'/>
+        <PanelComment />
       </div>
     );
 }

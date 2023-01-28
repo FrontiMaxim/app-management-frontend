@@ -1,0 +1,65 @@
+.comment {
+
+    display: grid;
+    grid-template-areas: "avatar information"
+                         "avatar content";
+
+    grid-template-columns: auto 1fr;
+
+    justify-content: space-around;
+
+    padding: 10px 5px;
+    margin-top: 10px;
+
+    background-color: #fff;
+
+   
+    box-shadow: 0 0 3px rgba($color: #000000, $alpha: .8);
+    border-radius: 10px;
+    .information {
+
+        display: flex;
+        justify-content: space-between;
+
+        padding: 0 10px;
+
+        grid-area: information;
+
+        font-size: 12px;
+
+        .date {
+
+    
+            font-weight: bold;
+            color: #b1b1b1;
+            
+            .time {
+                margin-left: 20px;
+            }
+        }
+    }
+
+    .content {
+        grid-area: content;
+
+        padding: 0 10px;
+
+        font-family: inherit;
+        font-size: 12px;
+    }
+}
+
+
+.myself {
+    background-color: rgba($color: #4460ed, $alpha: .6);
+    color: #fff;
+
+    .sender {
+        font-weight: bold;
+    }
+
+    .date {
+
+        color: #fff !important;        
+    }
+}

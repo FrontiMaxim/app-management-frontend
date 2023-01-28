@@ -9,3 +9,5 @@ export * from './components/CardUser/CardUser';
 export * from './components/SelectUser/SelectUser';
 export * from './components/Dialog/Dialog';
 export * from './lib/hooks/useDialog';
+export * from './components/Avatar/Avatar';
+export * from './lib/utils/formatTime';

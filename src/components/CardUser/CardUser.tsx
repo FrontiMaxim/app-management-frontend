@@ -1,6 +1,7 @@
 import React from 'react';
 import { IPropsCardUser } from './IPropsCardUser';
 import styles from './CardUser.module.scss';
+import { Avatar } from '../../shared';
 
 export const CardUser = ({ avatar, name, role, is_online }: IPropsCardUser) => {
 
@@ -16,12 +17,7 @@ export const CardUser = ({ avatar, name, role, is_online }: IPropsCardUser) => {
 
     return (
         <div className={styles.card_user}>
-            <div className={styles.container_is_online}>
-                {
-                    is_online && <div className={styles.indicator}></div>
-                }
-                <img className={styles.avatar} src={`avatars/${avatar}`} alt='аватар'/>
-            </div>
+            <Avatar avatar={avatar} is_online={is_online} />
             <div className={styles.information}>
                 <div className={styles.name}>
                     { name }
