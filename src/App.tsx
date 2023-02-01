@@ -1,64 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect }  from 'react';
 import './App.scss';
-import { Login, Objects } from './pages';
-import { useAppDispatch, useAppSelector } from './store';
-import { useSession } from './hooks/useSession';
+import { LoginPage, SessionPage } from './pages';
+import { useAppSelector } from './store';
 import { useBeforeunload } from 'react-beforeunload';
-import { Users } from './pages/Users/Users';
-import { useUser } from './hooks/useUser';
-import { setListUser } from './store/listUserSlice';
-import { Tasks } from './pages/Tasks/Tasks';
-import axios from 'axios';
-import Dropzone from 'react-dropzone';
-import { ListResource } from './entities/resource';
-import { PanelComment, PanelResource } from './widgets';
-import { ListComment } from './entities/comment';
+import { useCloseSession } from './entities/session';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useLoacalStorage } from './shared';
 
 function App() {
 
-    const { openSession, closeSession, isErrorOpenSession} = useSession();
-    const session = useAppSelector(state => state.session);
+    const { close } = useCloseSession();
 
-    const token = localStorage.getItem('token');
+    const currentSession = useAppSelector(state => state.session);
 
-    const dispatch = useAppDispatch();
-
-    const { users } = useUser();
-  
     // кастомный хук с npm на закрытие всего приложения, чтобы отпрваить серверу об закрытии сессии
-    useBeforeunload(() => {
-      if(token) {
-        closeSession('./session/close', token, session);
-      }
+    useBeforeunload((e) => {
+      e.preventDefault();
+      close(currentSession);
+      window.close();
     });
+    
+    const [token] = useLoacalStorage<string>('token');
+    const navigate = useNavigate();
 
     useEffect(() => {
       if(token) {
-        openSession('/session/open', token);
+        navigate('/session');
       }
     }, []);
 
-    useEffect(() => {
-      if(users) {
-        dispatch(setListUser(users));
-      }
-    }, [users])
-
     return (
       <div>
-        <Login />
-        {
-          isErrorOpenSession && 'Не удалось создать сессию для работы в системе'
-        }
-        {/*         
-        <Users />
-        <Objects /> */}
-        {/* <Tasks /> */}
-        
-       
-        <Users />
-        <PanelResource id_task='8984aea0-b881-4ed2-8cf4-096ca1707b7e'/>
-        <PanelComment />
+        <Routes>
+          <Route path='/' element=<LoginPage /> />
+          <Route path='/session' element=<SessionPage /> />
+          <Route path='/cabinet' element={<div>Главная</div>} />
+        </Routes>
       </div>
     );
 }

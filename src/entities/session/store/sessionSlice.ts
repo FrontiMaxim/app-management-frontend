@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ISession } from '../interfaces/ISession';
+import { ISession } from '../model/session.interface';
 
 const initialState:ISession = {
   id_session: '',
   id_user: '',
   date: '',
   time_start: '',
-  time_end: ''
+  time_end: '',
 };
   
 const sessionSlice = createSlice({
@@ -14,12 +14,11 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     installSession(state, action: PayloadAction<ISession>) {
-      const {id_session, id_user, date, time_start, time_end} = action.payload
-      state.id_session = id_session;
-      state.id_user = id_user;
-      state.date = date;
-      state.time_start = time_start;
-      state.time_end = time_end
+      state.id_session = action.payload.id_session;
+      state.id_user = action.payload.id_user;
+      state.date = action.payload.date;
+      state.time_start = action.payload.time_start;
+      state.time_end = action.payload.time_end;
     }
   },
 });

@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-export const useLoacalStorage = <T>(key: string, defaultValue?: T) => {
+type TUseLoacalStorage<T> = [
+    value:  T | undefined,
+    changeValue: (value: T) => void
+];
 
-    function initializeState(): T | undefined {
+export const useLoacalStorage = <T>(key: string, defaultValue?: T): TUseLoacalStorage<T> => {
+
+    const initializeState = (): T | undefined => {
         const storage = localStorage.getItem(key);
 
         if(storage) {
@@ -18,12 +23,13 @@ export const useLoacalStorage = <T>(key: string, defaultValue?: T) => {
 
     const [value, setValue] = useState<T | undefined>(initializeState);
 
-    useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(value))
-    }, [value, key]);
+    const changeValue = (value: T) => {
+        setValue(value);
+        localStorage.setItem(key, JSON.stringify(value));
+    }
 
     return [
         value,
-        setValue
+        changeValue
     ]          
 }

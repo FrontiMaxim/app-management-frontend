@@ -1,0 +1,12 @@
+@import './colors';
+
+@mixin error-input {
+    box-shadow: 0 0 8px $error;
+}
+
+@mixin error-text {
+    color: $error;
+    font-size: 14px;
+
+    margin-top: 4px;
+}

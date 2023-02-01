@@ -1,4 +1,4 @@
-export interface ILogin {
+export interface IDataAuthentication {
     login: string;
     password: string;
 }

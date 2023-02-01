@@ -11,3 +11,5 @@ export * from './components/Dialog/Dialog';
 export * from './lib/hooks/useDialog';
 export * from './components/Avatar/Avatar';
 export * from './lib/utils/formatTime';
+export * from './components/FieldText/FieldText';
+export * from './components/FieldPassword/FieldPassword';

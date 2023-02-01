@@ -1,0 +1,36 @@
+@import '../../styles/colors';
+
+.button {
+    width: 120px;
+    height: 30px;
+    padding: 3px 5px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.primary {
+    border: 2px solid $primary;
+    background-color: $primary;
+    color: $default;
+    font-weight: bold;
+
+    &:hover {
+        border: 2px solid $primary;
+        background-color: $default;
+        color: $primary;
+    }
+}
+
+.normal {
+    border: 2px solid $primary;
+    background-color: $default;
+    color: $primary;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $primary;
+        color: $default;
+    }
+}
