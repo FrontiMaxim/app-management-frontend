@@ -1,0 +1,31 @@
+@import '../../../shared//styles/colors';
+
+.item {
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    padding: 4px 0px 4px 30px;
+
+    &:hover {
+        border-right: 5px solid $primary;
+
+        background-color: rgba($primary, .5);
+
+        .value {
+            color: $default;
+        }
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    .value {
+        color: $grey;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+}
