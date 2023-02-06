@@ -33,5 +33,32 @@
             font-weight: bold;
         }
     }
+
+
+    .container_list {
+        margin-left: 20px;
+        margin-top: 50px;
+       
+        h4 {
+            margin-bottom: 10px;
+        }
+
+        .list {
+
+            height: 150px;
+            max-width: 90%;
+
+            padding: 5px;
+
+            overflow-y: auto;
+
+            box-shadow: 0 0 4px rgba($dark, .8);
+            border-radius: 10px;
+        
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
   
 }

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUser } from '../interfaces/IUser';
-import { IListUser } from '../interfaces/IListUser';
+import { IUser } from '../model/user.interface';
+import { IListUser } from '../model/listUser.interface';
 
 const initialState: IListUser = {
     listUser: [],

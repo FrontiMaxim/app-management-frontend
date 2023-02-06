@@ -7,14 +7,13 @@ interface IUseUsers {
     users: IUser[] | undefined,
     isLoading: boolean,
     isError: boolean,
-    isSuccess: boolean
 }
  
 export const useUsers = (): IUseUsers => {
 
    const [token] = useLoacalStorage<string>('token');
 
-    const { data: users, isLoading, isError, isSuccess } = useQuery<IUser[], Error, IUser[], string>(
+    const { data: users, isLoading, isError } = useQuery<IUser[], Error, IUser[], string>(
         'users', 
         () => getUsers('/user/read/users', token!)
     );
@@ -22,7 +21,6 @@ export const useUsers = (): IUseUsers => {
     return {
         users,
         isLoading,
-        isError,
-        isSuccess,
+        isError
     }
 }

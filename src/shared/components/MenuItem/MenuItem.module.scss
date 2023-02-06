@@ -10,12 +10,16 @@
     padding: 4px 0px 4px 30px;
 
     &:hover {
-        border-right: 5px solid $primary;
+        border-left: 5px solid $primary;
 
-        background-color: rgba($primary, .5);
+        background-color: rgba($primary, .4);
 
         .value {
-            color: $default;
+            color: $primary;
+        }
+
+        .icon {
+            fill: $primary;
         }
     }
 
@@ -23,8 +27,12 @@
         margin-bottom: 5px;
     }
 
+    .icon {
+        fill: $dark;
+    }
+
     .value {
-        color: $grey;
+        color: $dark;
         font-weight: bold;
         margin-left: 10px;
     }

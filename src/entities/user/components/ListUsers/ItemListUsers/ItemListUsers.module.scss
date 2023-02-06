@@ -1,0 +1,44 @@
+.item_list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    width: 40vw;
+    border-radius: 15px;
+    box-shadow: 0 0 3px  rgba(0, 0, 0, .5);
+
+    
+
+    &:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    .group_btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        margin-right: 20px;
+
+
+        .btn {
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .delete {
+            fill: red;
+        }
+    }
+}
+
+.noIsChange {
+    padding: 0;
+    width: auto;
+    border-radius: 0;
+    box-shadow: none;
+}
