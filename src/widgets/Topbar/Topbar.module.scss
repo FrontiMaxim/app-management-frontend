@@ -2,4 +2,16 @@
 
 .topbar {
     grid-area: topbar;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+   
+    height: 80px;
+
+    background-color: $default;
+
+    .btn {
+        margin-right: 30px;
+    }
 }

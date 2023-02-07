@@ -14,4 +14,5 @@ export * from './lib/utils/formatTime';
 export * from './components/FieldText/FieldText';
 export * from './components/FieldPassword/FieldPassword';
 export * from './components/Menu/Menu';
-
+export * from './components/Select/Select';
+export * from './components/Select/Select.props';

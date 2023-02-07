@@ -9,7 +9,7 @@ export const ListUsers = ({ users, isChange, className }: PropsListUsers) => {
             {
                 users.map(user => <ItemListUsers 
                                     key={user.id_user}
-                                    data={user} 
+                                    user={user} 
                                     isChange={isChange} 
                                     />)
             }

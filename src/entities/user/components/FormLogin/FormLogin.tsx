@@ -62,6 +62,7 @@ export const FormLogin = () => {
                     placeholder={`Длина пароля: ${minLengthPassword} - ${maxLengthPassword} символов`}
                     minLength={minLengthPassword}
                     maxLength={maxLengthPassword}
+                    required
                     className={cn({
                         [styles.error_input]: errors['password']
                     })}

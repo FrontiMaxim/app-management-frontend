@@ -10,10 +10,11 @@ import cn from 'classnames';
 import { Dialog, ModalWindow, useDialog, useModalWindow } from '../../../../shared';
 import { FormTask } from '../FormTask/FormTask';
 import { useDeleteTask } from '../../lib/hooks/useDeleteTask';
+import { useAppSelector } from '../../../../store';
 
 export const CardTask = ({ task }: PropsCardTask) => {
 
-  const roleUser = 'ADMIN';
+  const roleUser = useAppSelector(state => state.user.role);
 
   const modalWindowForForm = useModalWindow();
   const modalWindowForDialog = useModalWindow();

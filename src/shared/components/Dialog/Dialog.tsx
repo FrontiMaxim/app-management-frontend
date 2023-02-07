@@ -11,8 +11,8 @@ export const Dialog = ({question, agree, disagree}: PropsDialog) => {
             }
         </div>
         <div>
-            <Button value='Да' onClick={agree}/>
-            <Button value='Нет' onClick={disagree} />
+            <Button onClick={agree}>Да</Button>
+            <Button onClick={disagree}>Нет</Button>
         </div>
     </div>
   )

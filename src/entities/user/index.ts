@@ -7,3 +7,4 @@ export * from './const/Roles';
 export * from './lib/hooks/useUsers';
 export * from './store/listUserSlice';
 export * from './components/ListUsers/ListUsers';
+export * from './components/FormUser/FormUser';

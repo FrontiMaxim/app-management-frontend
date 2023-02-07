@@ -3,7 +3,8 @@ import styles from './FieldPassword.module.scss';
 import { PropsFieldPassword } from './FieldPassword.props';
 import cn from 'classnames';
 
-export const FieldPassword = ({ placeholder, register, nameField, minLength, maxLength, className, ...props } : PropsFieldPassword) => {
+
+export const FieldPassword = ({ placeholder, register, nameField, minLength, maxLength, required, className, ...props } : PropsFieldPassword) => {
   return (
     <>
         <input 
@@ -12,7 +13,7 @@ export const FieldPassword = ({ placeholder, register, nameField, minLength, max
           placeholder={ placeholder } 
           {...props}
           {...register(nameField, {
-            required: true,
+            required,
             minLength: {
               value: minLength ? minLength : 0,
               message: 'Недостаточно количество символов'
