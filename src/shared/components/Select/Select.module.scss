@@ -1,0 +1,9 @@
+@import '../../styles/input';
+
+.select {
+    @include input;
+    cursor: pointer;
+    width: 260px;
+}
+
+

@@ -15,7 +15,11 @@ export const useUsers = (): IUseUsers => {
 
     const { data: users, isLoading, isError } = useQuery<IUser[], Error, IUser[], string>(
         'users', 
-        () => getUsers('/user/read/users', token!)
+        () => getUsers('/user/read/users', token!),
+        {
+            refetchInterval: 1000 * 60,
+            refetchIntervalInBackground: true
+        }
     );
 
     return {

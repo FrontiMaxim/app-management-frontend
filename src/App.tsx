@@ -1,6 +1,6 @@
 import React, { useEffect }  from 'react';
 import './App.scss';
-import { CabinetPage, LoginPage, SessionPage } from './pages';
+import { CabinetPage, LoginPage, SessionPage, UsersPage } from './pages';
 import { useAppSelector } from './store';
 import { useBeforeunload } from 'react-beforeunload';
 import { useCloseSession } from './entities/session';
@@ -32,9 +32,13 @@ function App() {
     return (
       <div>
         <Routes>
-          <Route path='/' element=<LoginPage /> />
-          <Route path='/session' element=<SessionPage /> />
-          <Route path='/cabinet' element=<CabinetPage /> />
+          <Route path='/' element={<LoginPage />} />
+          <Route path='/session' element={<SessionPage />} />
+          <Route path='/cabinet' element={<CabinetPage />}>
+            <Route index element={<div>Объекты</div>} />
+            <Route path='/cabinet/users' element={<UsersPage />} />
+            <Route path='/cabinet/dashboard' element={<div>Статистика</div>} />
+          </Route>
         </Routes>
       </div>
     );

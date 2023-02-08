@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './Sidebar.module.scss';
-import { Avatar, Menu } from '../../shared';
+import { Avatar, Menu, PropsMenuItem } from '../../shared';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { installUser, useUser, ROLES, useUsers, setListUser, ListUsers} from '../../entities/user';
 import { MdOutlineMapsHomeWork } from 'react-icons/md';
@@ -12,21 +12,21 @@ export const Sidebar = () => {
     const { user } = useUser();
     const { users } = useUsers();
 
-    const menuItems = [
+    const menuItems: PropsMenuItem[] = [
       {
         icon: MdOutlineMapsHomeWork,
         value: 'Объекты',
-        href: ''
+        href: '/cabinet'
       },
       {
         icon: HiUsers,
         value: 'Пользователи',
-        href: ''
+        href: '/cabinet/users'
       },
       {
         icon: AiFillPieChart,
         value: 'Статистика',
-        href: ''
+        href: '/cabinet/dashboard'
       }
     ];
 

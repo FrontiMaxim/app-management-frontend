@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { IPropsItemListUsers } from './IPropsItemListUsers'
 import { CardUser } from '../../CardUser/CardUser'
-import { Button } from '../../Button/Button'
 import { ModeModalWindow } from '../../../interfaces/IModalWindow'
 import { useModalWindow } from '../../../hooks/useModalWindow'
 import { useDialogWindow } from '../../../hooks/useDialogWindow'

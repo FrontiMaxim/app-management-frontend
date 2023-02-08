@@ -4,12 +4,13 @@ import { ModalWindow, useModalWindow } from '../../shared';
 import styles from './UserCreationPanel.module.scss';
 import FormUser from '../../entities/user/components/FormUser/FormUser';
 
+
 export const UserCreationPanel = () => {
 
     const {isOpen, open, close} = useModalWindow();
 
     return (
-        <div>
+        <div className={styles.panel}>
             <BsPlusCircleFill 
                 onClick={open} 
                 size={65} 

@@ -1,22 +1,15 @@
 import React from 'react';
 import styles from './CabinetPage.module.scss';
-import { Section, Sidebar, Topbar, UserCreationPanel } from '../../widgets';
-import { ListUsers } from '../../entities/user';
-import { useAppSelector } from '../../store';
+import { Sidebar, Topbar } from '../../widgets';
+import { Outlet } from 'react-router-dom';
 
 export const CabinetPage = () => {
-
-    const users = useAppSelector(state => state.listUser.listUser);
 
     return (
         <div className={styles.page}>
             <Sidebar />
             <Topbar />
-            <Section>
-                
-                <ListUsers isChange users={users} />
-                <UserCreationPanel />
-            </Section>
+            <Outlet />  
         </div>
     )
 }
