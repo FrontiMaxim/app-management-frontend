@@ -9,5 +9,5 @@ export interface IObject {
     note: string;
     data_start: string;
     client: string;
-    users?: IUser[];
+    users?: IUser[] | string[];
 }

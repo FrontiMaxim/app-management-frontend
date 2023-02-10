@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 
 export interface PropsCheckBox extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>  {
-    register: UseFormRegisterReturn;
+    register: UseFormRegister<any>;
+    nameField: string;
 }

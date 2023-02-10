@@ -15,7 +15,7 @@ export const Sidebar = () => {
     const menuItems: PropsMenuItem[] = [
       {
         icon: MdOutlineMapsHomeWork,
-        value: 'Объекты',
+        value: 'Проекты',
         href: '/cabinet'
       },
       {

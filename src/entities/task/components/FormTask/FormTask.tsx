@@ -2,9 +2,8 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { ITask } from '../../model/task.interface';
 import { useCreateTask } from '../../lib/hooks/useCreateTask';
-import { FieldText } from '../../../../components';
 import { PropsFormTask } from './FormTask.props';
-import { Button, Calendar, SelectUser, TextArea, formatDate } from '../../../../shared';
+import { Button, Calendar, FieldText, SelectUser, TextArea, formatDate } from '../../../../shared';
 import { filterUsersByRole } from '../../lib/utils/filterUsersByRole';
 import { useUpdateTask } from '../../lib/hooks/useUpdateTask';
 import { useParticipant } from '../../lib/hooks/useParticipant';
@@ -66,8 +65,8 @@ export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }:
             <form>
                 <FieldText 
                     placeholder='Название задачи' 
-                    register={register('name')} 
-                    type='text' 
+                    register={register} 
+                    nameField='name'
                     minLength={20} 
                     maxLength={52}
                 />
@@ -82,7 +81,8 @@ export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }:
                     : 
                     participants &&
                     <SelectUser 
-                        register={register('user')}  
+                        register={register}  
+                        nameField='user'
                         users={filterUsersByRole(participants, 'DESIGNER', 'ADMIN')} 
                         nameList='Список исполнителей'
                     />

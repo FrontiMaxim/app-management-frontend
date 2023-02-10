@@ -5,3 +5,4 @@ export * from './PanelComment/PanelComment';
 export * from './Sidebar/Sidebar';
 export * from './Topbar/Topbar';
 export * from './UserCreationPanel/UserCreationPanel';
+export * from './ObjectCreationPanel/ObjectCreationPanel';

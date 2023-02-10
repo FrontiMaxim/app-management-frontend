@@ -8,7 +8,7 @@ export const Menu = ({ items }: PropsMenu) => {
     <nav className={styles.menu}>
         <ul>
             {
-                items.map(item => <MenuItem {...item} />)
+                items.map(item => <MenuItem key={Date.now() + item.href} {...item} />)
             }
         </ul>
     </nav>

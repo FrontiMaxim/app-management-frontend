@@ -17,3 +17,6 @@ export * from './components/Menu/Menu';
 export * from './components/Select/Select';
 export * from './components/Select/Select.props';
 export * from './components/MenuItem/MenuItem.props';
+export * from './components/AvatarGroup/AvatarGroup';
+export * from './components/FieldNumber/FieldNumber';
+export * from './components/CheckBox/CheckBox';

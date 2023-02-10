@@ -7,7 +7,7 @@ import { CardUser } from '../..';
 import { CheckBox } from '../CheckBox/CheckBox';
 import { RadioBox } from '../RadioBox/RadioBox';
 
-export const SelectUser =({ users, register, multi, nameList }: PropsSelectUser) => {
+export const SelectUser =({ users, register, nameField,  multi, nameList }: PropsSelectUser) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -32,9 +32,9 @@ export const SelectUser =({ users, register, multi, nameList }: PropsSelectUser)
                             <CardUser {...user} />
                             {
                                 multi ? 
-                                <CheckBox register={register} value={user.id_user} />
+                                <CheckBox register={register} nameField={nameField} value={user.id_user} />
                                 :
-                                <RadioBox register={register} value={user.id_user} />
+                                <RadioBox register={register} nameField={nameField} value={user.id_user} />
                             }
                         </li>)
                     }

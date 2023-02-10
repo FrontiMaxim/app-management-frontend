@@ -1,20 +1,33 @@
 @import '../../../../../shared/styles/colors';
 
-.item_list {
+.item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 8px 12px;
-    width: 40vw;
+    align-items: center;
+
+    background-color: $default;
     border-radius: 15px;
     box-shadow: 0 0 3px  rgba($dark, .5);
 
-    background-color: $default;
+    padding: 10px;
+    width: 70%;
 
-    
+    transition: all .2s;
+
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 6px $primary;
+    }
 
     &:not(:first-child) {
-        margin-top: 10px;
+        margin-top: 15px;
+    }
+
+    .container_team {
+        .head {
+            font-weight: bold;
+        }
     }
 
     .group_btn {
@@ -38,11 +51,4 @@
             fill: red;
         }
     }
-}
-
-.noIsChange {
-    padding: 0;
-    width: auto;
-    border-radius: 0;
-    box-shadow: none;
 }

@@ -1,0 +1,81 @@
+@import '../../styles/colors';
+
+.avatar_group {
+
+    display: flex;
+    align-items: center;
+
+    .list {
+        display: flex;
+        list-style: none;
+        
+        .item {
+            position: relative;
+            display: block;
+            cursor: pointer;
+            transition: .2s;
+    
+            .information {
+                position: absolute;
+                white-space: nowrap;
+                bottom: calc(100%);
+                background-color: rgba($dark, .7);
+                padding: 3px 5px;
+                color: $default;
+                visibility: hidden;
+                opacity: 0;
+                transition: .2s;
+
+                .name {
+                    font-size: 14px;
+                }
+
+                .role {
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+    
+            .avatar {
+                display: block;
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border: 3px solid $default;
+                border-radius: 50%;
+                box-shadow: 0 2px 4px rgba($dark, .5);
+            }  
+        }
+    
+        .item:not(:first-child) {
+            margin-left: -15px;
+        }
+    
+        .item:hover {
+            z-index: 1;
+            transform: translateY(-5px);
+        }
+    
+        .item:hover .information {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .count {
+
+        display: flex;
+        align-items: center;
+
+        margin-left: 10px;
+
+        span {
+            margin-left: 3px;
+            font-weight: bold;  
+        }
+            
+        .icon {
+            fill: $primary;
+        }
+    }
+}

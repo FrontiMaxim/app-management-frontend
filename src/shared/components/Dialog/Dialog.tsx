@@ -6,7 +6,7 @@ import styles from './Dialog.module.scss';
 export const Dialog = ({question, agree, disagree}: PropsDialog) => {
   return (
     <div className={styles.dialog}>
-        <div>
+        <div className={styles.question}>
             {
                 question
             }
