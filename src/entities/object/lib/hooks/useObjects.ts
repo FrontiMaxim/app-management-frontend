@@ -19,7 +19,8 @@ export const useObjects = (): IUseObjects => {
         'objects', 
         () => getObjects('/object/read/all', id_user, token!),
         {
-            enabled: !!id_user
+            enabled: !!id_user,
+            refetchInterval: 1000 * 60 
         }
     );
 

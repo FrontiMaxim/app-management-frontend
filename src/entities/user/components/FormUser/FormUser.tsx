@@ -27,6 +27,7 @@ const FormUser = ({ mode, defaultData, closeModalWindow } : PropsFormUser) => {
         mode: 'onBlur'
     });
 
+    console.log(defaultData);
     const [create] = useCreateUser();
     const [update] = useUpdateUser();
 

@@ -7,14 +7,15 @@ import { useCreateObject } from '../../lib/hooks/useCreateObject';
 import { useUpdateObject } from '../../lib/hooks/useUpdateObject';
 import { Button, Calendar, FieldNumber, FieldText, formatDate } from '../../../../shared';
 import { useAppSelector } from '../../../../store';
+import styles from './FormObject.module.scss';
+import cn from 'classnames';
 
 export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormObject) => {
-
 
     const [create] = useCreateObject();
     const [update] = useUpdateObject();
 
-    const { register, handleSubmit } = useForm<IObject>({
+    const { register, handleSubmit, formState: {errors} } = useForm<IObject>({
         defaultValues: {
             ...defaultData,
             data_start: defaultData ? formatDate( defaultData.data_start, 'STANDART') : '',
@@ -22,7 +23,8 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                 user = user as IUser;
                 return user.id_user
             })
-        }
+        },
+        mode: 'onBlur'
     });
 
     const listUser = useAppSelector(state => state.listUser.listUser);
@@ -47,7 +49,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
             data.data_start = formatDate(data.data_start, 'LOCAL');
         }
 
-        
         if(data.apartment) {
             data.apartment = Number(data.apartment);
         } else {
@@ -66,74 +67,155 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
     }
 
     return ( 
-        <form>
+        <form className={styles.form}>
             {
-                mode === 'CREATE' &&  <h1>Создание объекта</h1>
+                mode === 'CREATE' &&  <h1>Создание проекта</h1>
             }
             {
-                mode === 'CHANGE' &&  <h1>Изменение объекта</h1>
+                mode === 'CHANGE' &&  <h1>Редактирование проекта</h1>
             }
-            <FieldText 
-                placeholder='Дизайн кухни' 
-                register={register} 
-                nameField='note'
-                minLength={10} 
-                maxLength={52}
-            />
 
-            <FieldText 
-                placeholder='Самара' 
-                register={register} 
-                nameField='city'
-                minLength={3} 
-                maxLength={14}
-            />
-
-            <FieldText 
-                placeholder='Моссковское ш.' 
-                register={register} 
-                nameField='street'
-                minLength={8} 
-                maxLength={14}
-            />
-
-            <FieldText 
-                placeholder='34Б' 
-                register={register} 
-                nameField='house'
-                minLength={0} 
-                maxLength={4}
-            />
-
-            <FieldNumber
-                placeholder='508' 
-                register={register} 
-                nameField='apartment'
-            />
-
-            <Calendar register={register} nameField='data_start' />
-            
-            <FieldText 
-                placeholder='Иванов Иван Иванович' 
-                register={register} 
-                nameField='client'
-                minLength={10} 
-                maxLength={40}
-            />
-
-            <MultiSelectUser register={register} nameField='users' />
-            
-            <Button 
-                onClick={handleSubmit(submit)}
-            >
-                {mode === 'CREATE' ? 'Создать' : 'Сохранить изменения'}
-            </Button>
+            <div className={styles.container_fields}>
+                <label>
+                    <p>Название проекта</p>
+                    <FieldText 
+                        placeholder='Дизайн кухни' 
+                        register={register} 
+                        nameField='note'
+                        minLength={10} 
+                        maxLength={52}
+                        className={cn({
+                            [styles.error_input]: errors['note']
+                        })}
+                    />
+                    {
+                        errors['note'] && <div className={styles.error_text}>{ errors['note'].message }</div>
+                    }
+                </label>
                 
-            <Button 
-                onClick={() => closeModalWindow && closeModalWindow()}
-            >
-                Отмена
-            </Button>
+                <label>
+                    <p>Город</p>
+                    <FieldText 
+                        placeholder='Самара' 
+                        register={register} 
+                        nameField='city'
+                        minLength={3} 
+                        maxLength={14}
+                        className={cn({
+                            [styles.error_input]: errors['city']
+                        })}
+                    />
+                    {
+                        errors['city'] && <div className={styles.error_text}>{ errors['city'].message }</div>
+                    }
+                </label>
+
+                <label>
+                    <p>Улица</p>
+                    <FieldText 
+                        placeholder='Моссковское ш.' 
+                        register={register} 
+                        nameField='street'
+                        minLength={8} 
+                        maxLength={14}
+                        className={cn({
+                            [styles.error_input]: errors['street']
+                        })}
+                    />
+                    {
+                        errors['street'] && <div className={styles.error_text}>{ errors['street'].message }</div>
+                    }
+                </label>
+
+                <label>
+                    <p>Дом</p>
+                    <FieldText 
+                        placeholder='34Б' 
+                        register={register} 
+                        nameField='house'
+                        minLength={0} 
+                        maxLength={4}
+                        className={cn({
+                            [styles.error_input]: errors['house']
+                        })}
+                    />
+                    {
+                        errors['house'] && <div className={styles.error_text}>{ errors['house'].message }</div>
+                    }
+                </label>
+
+
+                <label>
+                    <p>Квартира</p>
+                    <FieldNumber
+                        placeholder='508' 
+                        register={register} 
+                        nameField='apartment'
+                        className={cn({
+                            [styles.error_input]: errors['apartment']
+                        })}
+                    />
+                    {
+                        errors['apartment'] && <div className={styles.error_text}>{ errors['apartment'].message }</div>
+                    }
+                </label>
+
+
+                <label>
+                    <p>Дата старта проекта</p>
+                    <Calendar 
+                        register={register} 
+                        nameField='data_start' 
+                        className={cn({
+                            [styles.error_input]: errors['data_start']
+                        })}
+                    />
+                    {
+                        errors['data_start'] && <div className={styles.error_text}>{ errors['data_start'].message }</div>
+                    }
+                </label>
+                
+                <label>
+                    <p>Клиент</p>
+                    <FieldText 
+                        placeholder='Иванов Иван Иванович' 
+                        register={register} 
+                        nameField='client'
+                        minLength={10} 
+                        maxLength={40}
+                        className={cn({
+                            [styles.error_input]: errors['client']
+                        })}
+                    />
+                    {
+                        errors['client'] && <div className={styles.error_text}>{ errors['client'].message }</div>
+                    }
+                </label>
+
+                <label>
+                    <p>Команда</p>
+                    <MultiSelectUser register={register} nameField='users' />
+                </label>
+            </div>
+            
+            
+            <div className={styles.container_btn}>
+                <Button 
+                    onClick={handleSubmit(submit)}
+                    mode='primary'
+                    className={styles.btn}
+                >
+                    {mode === 'CREATE' ? 'Создать' : 'Сохранить изменения'}
+                </Button>
+                    
+                <Button 
+                    onClick={() => closeModalWindow && closeModalWindow()}
+                    mode='normal'
+                    className={styles.btn}
+                >
+                    Отмена
+                </Button>
+            </div>
         </form>
     )
 }

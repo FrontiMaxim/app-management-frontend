@@ -31,7 +31,11 @@ export const MultiSelectUser = ({ register, nameField }: PropsMultiSelectUser) =
                         users?.map((user) => 
                         <li key={user.id_user} className={cn(styles.item)} >
                             <CardUser {...user} />
-                            <CheckBox register={register} nameField={nameField} value={user.id_user} />
+                            <CheckBox 
+                                register={register} 
+                                nameField={nameField} 
+                                value={user.id_user} 
+                            />
                         </li>)
                     }
                 </ul>

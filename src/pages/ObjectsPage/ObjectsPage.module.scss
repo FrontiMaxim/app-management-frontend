@@ -1,0 +1,13 @@
+@import '../../shared/styles/colors';
+
+.page {
+    grid-area: content;
+
+    padding-top: 30px;
+    padding-left: 70px;
+
+    h1 {
+        margin-bottom: 20px;
+        color: $primary;
+    }
+}

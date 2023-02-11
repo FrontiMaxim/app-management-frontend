@@ -1,29 +1,49 @@
+@import '../../../../shared/styles/colors';
+
 .multi_select {
     position: relative;
+    display: flex;
+    justify-content: center;
+    color: $dark;
+
     .head {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #fff;
+        background-color: $default;
+
         border-radius: 5px;
+        box-shadow: 0 0 3px $dark;
+
         padding: 10px;
-        width: 220px;
+        width: 250px;
 
         .arrow {
             transition: all .5s;
             cursor: pointer;
+            transform: rotate(270deg);
         }
 
         .open {
-            transform: rotate(180deg);
+            transform: rotate(90deg);
         }
     }
 
     .list {
         position: absolute;
+        left: calc(100% + 40px);
+        bottom: 5%;
+
+        height: 150px;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         list-style: none;
         margin-top: 5px;
-        background-color: #fff;
+        background-color: $default;
         padding: 5px 5px;
         border-radius: 10px;
        
