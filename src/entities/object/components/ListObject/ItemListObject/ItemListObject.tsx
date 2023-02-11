@@ -10,7 +10,7 @@ import { useDeleteObject } from '../../../lib/hooks/useDeleteObject';
 import { IUser } from '../../../../user';
 
 
-export const ItemListObject = ({ isChange, data}: IPropsItemListObject) => {
+export const ItemListObject = ({ isChange, data, ...props}: IPropsItemListObject) => {
 
     const modalWindowForForm = useModalWindow();
     const modalWindowForDialog = useModalWindow();
@@ -40,7 +40,7 @@ export const ItemListObject = ({ isChange, data}: IPropsItemListObject) => {
                 />
             </ModalWindow>
         }
-        <li className={styles.item}>
+        <li className={styles.item} {...props} >
             <CardObject {...data} />
 
             <div className={styles.container_team}>

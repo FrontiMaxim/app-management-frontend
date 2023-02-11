@@ -1,6 +1,6 @@
 export * from './LoginPage/LoginPage';
 export * from './ObjectsPage/ObjectsPage';
-export * from './Tasks/Tasks';
+export * from './TasksPage/TasksPage';
 export * from './SessionPage/SessionPage';
 export * from './CabinetPage/CabinetPage';
 export * from './UsersPage/UsersPage';

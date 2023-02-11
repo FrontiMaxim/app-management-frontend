@@ -1,0 +1,12 @@
+.list {
+    .container_item {
+
+        &:not(:first-child) {
+            margin-top: 25px;
+        }
+       
+        .btn {
+            margin-top: 10px;
+        }
+    }
+}

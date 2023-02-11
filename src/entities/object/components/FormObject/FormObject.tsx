@@ -192,10 +192,13 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                     }
                 </label>
 
-                <label>
+
+                <div>
                     <p>Команда</p>
                     <MultiSelectUser register={register} nameField='users' />
-                </label>
+                </div>
+                    
+                
             </div>
             
             
