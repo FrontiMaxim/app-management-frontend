@@ -1,0 +1,7 @@
+@import '../../styles/input';
+
+textarea {
+    @include input;
+    height: 150px;
+    resize: none;
+}

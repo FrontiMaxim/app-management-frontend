@@ -1,3 +1,5 @@
+@import '../../../../shared/styles/colors';
+
 .tag {
 
     width: 200px;
@@ -9,6 +11,8 @@
     box-shadow: 0 0 3px rgba(0, 0, 0, .6);
     border-radius: 10px;
 
+    background-color: $default;
+    
     .text {
         font-weight: bold;
     }

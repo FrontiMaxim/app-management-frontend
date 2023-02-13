@@ -7,12 +7,12 @@ import { ContainerInformationTask } from '../ContainerInformationTask/ContainerI
 import { FaPen } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
 import cn from 'classnames';
-import { Dialog, ModalWindow, useDialog, useModalWindow } from '../../../../shared';
+import { Avatar, Button, Dialog, ModalWindow, useDialog, useModalWindow } from '../../../../shared';
 import { FormTask } from '../FormTask/FormTask';
 import { useDeleteTask } from '../../lib/hooks/useDeleteTask';
 import { useAppSelector } from '../../../../store';
 
-export const CardTask = ({ task }: PropsCardTask) => {
+export const CardTask = ({ task, className }: PropsCardTask) => {
 
   const roleUser = useAppSelector(state => state.user.role);
 
@@ -49,7 +49,7 @@ export const CardTask = ({ task }: PropsCardTask) => {
         </ModalWindow>
       }
 
-      <div className={styles.task}>
+      <div className={cn(styles.task, className)}>
           <div className={styles.head}>
             <TagStatusTask type={task.status.name} />
             {
@@ -81,21 +81,18 @@ export const CardTask = ({ task }: PropsCardTask) => {
                 information={task.deadline} 
               />
 
-              <ContainerInformationTask 
-                typeInformation='COMMENTS' 
-                title='Комментарии' 
-              />
-
-              <ContainerInformationTask 
-                typeInformation='RESOURCES' 
-                title='Файлы' 
-              />
+              <Button
+                mode='primary'
+                className={styles.btn_open}
+              >
+                Открыть
+              </Button>
             
               {
                 task.user &&
                 <div className={styles.container_user} title='Исполнитель'>
                   <span className={styles.name}>{task.user.name}</span>
-                  <img className={styles.avatar} src={`avatars/${task.user.avatar}`} alt="аватарка" />
+                  <Avatar avatar={task.user.avatar} is_online={false} className={styles.avatar} />
                 </div>
               }
             </div>

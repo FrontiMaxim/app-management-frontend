@@ -7,7 +7,11 @@ export const ListTask = ({ data }: PropsListTask) => {
   return (
     <div className={styles.list} >
       {
-          data.map(task => <CardTask key={task.id_task} task={task}/>)
+          data.map(task => <CardTask 
+                              key={task.id_task} 
+                              task={task}
+                              className={styles.item}
+                            />)
       }
     </div>
   )

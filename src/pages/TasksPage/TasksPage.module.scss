@@ -1,7 +1,50 @@
-.tasks_page {
-    width: 80vw;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 100px;
+@import '../../shared/styles/colors';
+
+.page {
+    grid-area: content;
+    position: relative;
+
+    padding-top: 15px;
+    
+    overflow-y: auto; 
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .container_information {
+
+        position: fixed;
+        width: 80vw;
+        z-index: 20;
+       
+        .information {
+
+            width: 90%;
+            margin: 0 auto;
+
+            padding: 10px 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+          
+
+            border-radius: 10px;
+        
+            box-shadow: 0 0 3px rgba($dark, .6);
+            background-color: $default;
+
+            .container_team {
+                span {
+                    font-weight: bold;
+                }
+            }
+        }       
+    }
+
+    .board {
+        margin-top: 120px;
+    }
 }

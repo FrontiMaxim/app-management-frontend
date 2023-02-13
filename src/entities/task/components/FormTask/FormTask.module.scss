@@ -1,0 +1,43 @@
+@import '../../../../shared/styles/form';
+@import '../../../../shared/styles/errors';
+@import '../../../../shared/styles/input';
+
+.form {
+    @include form;
+    width: 350px;
+    max-width: 500px;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-bottom: 25px;
+
+        p {
+            @include input-title;
+        }
+    
+        .error_input {
+            @include error-input;
+        }
+    
+        .error_text {
+            @include error-text;
+        }
+    }
+
+    .container_btn {
+        display: flex;
+        justify-content: space-around;
+
+        width: 100%;
+
+        margin-top: 25px;
+
+        .btn {
+            width: 150px;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { ITask } from '../../model/task.interface';
 import { useCreateTask } from '../../lib/hooks/useCreateTask';
@@ -6,20 +6,30 @@ import { PropsFormTask } from './FormTask.props';
 import { Button, Calendar, FieldText, SelectUser, TextArea, formatDate } from '../../../../shared';
 import { filterUsersByRole } from '../../lib/utils/filterUsersByRole';
 import { useUpdateTask } from '../../lib/hooks/useUpdateTask';
+import { IUser } from '../../../user';
+import styles from './FormTask.module.scss';
+import cn from 'classnames';
 import { useParticipant } from '../../lib/hooks/useParticipant';
 
 export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }: PropsFormTask) => {
     
-    const { register, handleSubmit } = useForm<ITask>({
+    const { register, handleSubmit, formState: {errors} } = useForm<ITask>({
         defaultValues: {
             ...defaultData,
-            user: { id_user: defaultData?.user?.id_user },
+            user: defaultData?.user?.id_user,
             // приводим дату к формату YYYY-MM-DD
             deadline: formatDate(defaultData?.deadline ? defaultData.deadline : '', 'STANDART')
         }
     });
 
-    const { participants, isLoading } = useParticipant(currentObject.id_object);
+    const { participants } = useParticipant(currentObject.id_object);
+    const [ performers, setPerformers ] = useState<IUser[]>([]);
+
+    useEffect(() => {
+        if(participants) {
+            setPerformers(filterUsersByRole(participants, 'DESIGNER', 'ADMIN'));
+        }
+    }, [participants]);
 
     const [create] = useCreateTask();
     const [update] = useUpdateTask();
@@ -55,49 +65,96 @@ export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }:
     }
 
     return (
-        <>
+        <form className={styles.form}>
             {
-                mode === 'CREATE' &&  <h1>Создание новой задачи</h1>
+                mode === 'CREATE' &&  <h2>Создание новой задачи</h2>
             }
             {
-                mode === 'CHANGE' &&  <h1>Изменение задачи</h1>
+                mode === 'CHANGE' &&  <h2>Редактирование задачи</h2>
             }
-            <form>
+
+            <label>
+                <p>Название задачи</p>
                 <FieldText 
                     placeholder='Название задачи' 
                     register={register} 
                     nameField='name'
                     minLength={20} 
                     maxLength={52}
+                    className={cn({
+                        [styles.error_input]: errors['name']
+                    })}
                 />
-
-                <TextArea register={register} nameField='description'/>
-
-                <Calendar  register={register} nameField='deadline' />
-              
                 {
-                    isLoading ?
-                    <div>Загрузка исполнителей по данному объекту...</div>
-                    : 
-                    participants &&
+                    errors['name'] && <div className={styles.error_text}>{ errors['name'].message }</div>
+                }
+            </label>
+
+            <label>
+                <p>Описание</p>
+                <TextArea 
+                    register={register} 
+                    nameField='description'
+                    className={cn({
+                        [styles.error_input]: errors['description']
+                    })}
+                />
+                {
+                    errors['description'] && <div className={styles.error_text}>{ errors['description'].message }</div>
+                }
+            </label>
+
+
+            <label>
+                <p>Дата сдачи</p>
+                <Calendar  
+                    register={register} 
+                    nameField='deadline' 
+                    className={cn({
+                        [styles.error_input]: errors['deadline']
+                    })}
+                />
+                {
+                    errors['deadline' ] && <div className={styles.error_text}>{ errors['deadline'].message }</div>
+                }
+            </label>
+            
+            <div>
+                 <label>
+                     <p>Исполнитель</p>
+                </label>
+                {
+                    performers.length !== 0 ?
                     <SelectUser 
                         register={register}  
                         nameField='user'
-                        users={filterUsersByRole(participants, 'DESIGNER', 'ADMIN')} 
+                        users={performers} 
                         nameList='Список исполнителей'
                     />
+                    :
+                    <div>В команде отсутствуют исполнители...</div>
                 }
-              
+            </div>
+           
+            
+            <div className={styles.container_btn}>
                 <Button 
-                    value={mode === 'CREATE' ? 'Создать' : 'Сохранить изменения'}
                     onClick={handleSubmit(submit)}
-                />
+                    mode='primary'
+                    className={styles.btn}
+                >
+                    {mode === 'CREATE' ? 'Создать' : 'Сохранить изменения'}
+                </Button>
 
                 <Button 
-                    value='Отмена' 
+                    mode='normal'
                     onClick={() => closeModalWindow && closeModalWindow()}
-                />
-            </form>
-        </>
+                    className={styles.btn}
+                >
+                    Отмена
+                </Button>
+            </div>
+            
+        </form>
     )
 }

@@ -8,7 +8,7 @@ export interface ITask {
     deadline: string;
     description: string;
     object: IObject;
-    user?: IUser; 
+    user?: IUser | any; 
     status: IStatus;
     comments?: IComment[];
     resources?: IResource[];

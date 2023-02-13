@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { PropsTaskBoard } from './TaskBoard.props'
 import { ITask, ListTask, TagListTask, distributeTasksByStatus, useTask } from '../../entities/task';
 import styles from './TaskBoard.module.scss';
+import cn from 'classnames';
 
-export const TaskBoard = ({id_object, id_user}: PropsTaskBoard) => {
+export const TaskBoard = ({id_object, id_user, className}: PropsTaskBoard) => {
     
     const { tasks } = useTask(id_object, id_user);
 
@@ -22,7 +23,7 @@ export const TaskBoard = ({id_object, id_user}: PropsTaskBoard) => {
     }, [tasks]);
     
     return (
-        <div className={styles.board} >
+        <div className={cn(styles.board, className)} >
             <div className={styles.column}>
                 <TagListTask type='SCHEDULED' />
                 <ListTask data={scheduledTasks} />

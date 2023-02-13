@@ -34,7 +34,12 @@ export const SelectUser =({ users, register, nameField,  multi, nameList }: Prop
                                 multi ? 
                                 <CheckBox register={register} nameField={nameField} value={user.id_user} />
                                 :
-                                <RadioBox register={register} nameField={nameField} value={user.id_user} />
+                                <RadioBox 
+                                    register={register} 
+                                    nameField={nameField} 
+                                   
+                                    value={user.id_user} 
+                                />
                             }
                         </li>)
                     }

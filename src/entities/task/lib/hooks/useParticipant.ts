@@ -14,7 +14,7 @@ export const useParticipant = (id_object: string): IUseParticipant => {
 
     const { data: participants, isLoading, isError } = useQuery<IUser[], Error, IUser[], string>(
         'participants', 
-        () => getParticipantsObject('user/read/participants_object', id_object, token as string)
+        () => getParticipantsObject('/user/read/participants_object', id_object, token!)
     );
 
     return {

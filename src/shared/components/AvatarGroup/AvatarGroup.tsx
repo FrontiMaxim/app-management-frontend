@@ -26,7 +26,7 @@ export const AvatarGroup = ({ users }: PropsAvatarGroup ) => {
                                       { roles[user.role] }
                                     </div>
                                 </div>
-                                <img src={`avatars/${user.avatar}`} alt='аватарка' className={styles.avatar} />
+                                <img src={`/avatars/${user.avatar}`} alt='аватарка' className={styles.avatar} />
                               </li>)  
         }
       </ul>
