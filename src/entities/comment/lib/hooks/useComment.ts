@@ -14,7 +14,10 @@ export const useComment = (id_task: string): IUseComment => {
 
     const { data: comments, isLoading, isError } = useQuery<IComment[], Error, IComment[], string>(
         'comments', 
-        () => getCommentsByIdTask('/comment/read/comments', id_task, token as string)
+        () => getCommentsByIdTask('/comment/read/comments', id_task, token as string),
+        {
+            refetchInterval: 1000 * 30
+        }
     );
 
     return {

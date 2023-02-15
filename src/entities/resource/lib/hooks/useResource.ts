@@ -14,7 +14,10 @@ export const useResource = (id_task: string): IUseResource => {
 
     const { data: resources, isLoading, isError } = useQuery<IResource[], Error, IResource[], string>(
         'resources', 
-        () => getResourcesByIdTask('/resource/read/resources', id_task, token as string)
+        () => getResourcesByIdTask('/resource/read/resources', id_task, token as string),
+        {
+            refetchInterval: 1000 * 60
+        }
     );
 
     return {

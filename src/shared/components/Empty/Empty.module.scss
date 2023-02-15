@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: inherit;
+    width: inherit;
+    
+    span {
+        color: $grey;
+        font-weight: bold;
+    }
+}

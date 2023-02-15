@@ -2,12 +2,10 @@ import React from 'react'
 import { ListResource, useCreateResource } from '../../entities/resource';
 import Dropzone from 'react-dropzone';
 import styles from './PanelResource.module.scss';
+import { PropsPanelResource } from './PanelResource.props';
+import cn from 'classnames';
 
-interface PropsPanelResource {
-    id_task: string;
-}
-
-export const PanelResource = ({id_task}: PropsPanelResource) => {
+export const PanelResource = ({id_task, className}: PropsPanelResource) => {
 
     const [create] = useCreateResource();
 
@@ -25,8 +23,10 @@ export const PanelResource = ({id_task}: PropsPanelResource) => {
     }
 
     return (
-        <div className={styles.panel_resource}>
-            <ListResource id_task={id_task}/>
+        <div className={cn(styles.panel_resource, className)}>
+            <h2>Ресурсы</h2>
+            <hr />
+            <ListResource id_task={id_task} className={styles.list}/>
             <Dropzone onDrop={handlerOnDrop}>
                 {
                     ({getRootProps, getInputProps}) => (

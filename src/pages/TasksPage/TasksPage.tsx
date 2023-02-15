@@ -3,7 +3,7 @@ import { TaskBoard, TaskCreationPanel } from '../../widgets';
 import { useLocation } from 'react-router-dom';
 import styles from './TasksPage.module.scss';
 import { CardObject } from '../../entities/object';
-import { AvatarGroup, Button } from '../../shared';
+import { AvatarGroup } from '../../shared';
 
 export const TasksPage = () => {
 

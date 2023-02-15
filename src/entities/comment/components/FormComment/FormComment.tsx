@@ -14,22 +14,30 @@ export const FormComment = ({ task, user }: PropsFormComment) => {
 
         e.preventDefault();
 
+        if(comment !== '') {
+            const date = new Date().toString();
 
-        const date = new Date().toString();
-
-        create({
-            content: comment,
-            task,
-            user,
-            data: formatDate(date, 'LOCAL'),
-            time: formatTime(date)
-        });
+            create({
+                content: comment,
+                task,
+                user,
+                data: formatDate(date, 'LOCAL'),
+                time: formatTime(date)
+            });
+    
+            setComment('');
+        }       
     }
 
     return (
         <form className={styles.form}>
-            <textarea className={styles.text} onChange={(e) => setComment(e.target.value)}/>
-            <Button onClick={submit}>
+            <textarea className={styles.text} 
+                defaultValue=''
+                value={comment} 
+                onChange={(e) => setComment(e.target.value)}
+                placeholder='Комментарий...'
+            />
+            <Button onClick={submit} mode='primary' className={styles.btn}>
                 Отправить
             </Button>
         </form>

@@ -40,10 +40,11 @@
     }
 
     p {
+        width: 250px;
+        display: inline-block;
         color: $grey;
         margin-top: 5px;
-        white-space: pre;
-        word-wrap: break-word;
+        white-space: pre-wrap;
     }
 
     .containers {

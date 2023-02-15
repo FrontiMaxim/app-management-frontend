@@ -11,10 +11,6 @@ export const ListObject = ({ isChange }: PropsListObject) => {
   const { objects } = useObjects();
   const navigate = useNavigate();
 
-   // &:not(:first-child) {
-    //     margin-top: 15px;
-    // }
-
   return (
     <ul className={styles.list}>
         {

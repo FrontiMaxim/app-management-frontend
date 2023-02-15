@@ -20,3 +20,4 @@ export * from './components/MenuItem/MenuItem.props';
 export * from './components/AvatarGroup/AvatarGroup';
 export * from './components/FieldNumber/FieldNumber';
 export * from './components/CheckBox/CheckBox';
+export * from './components/Empty/Empty';

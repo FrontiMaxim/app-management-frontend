@@ -1,17 +1,10 @@
 .card {
-    display: inline-block;
     position: relative;
-
-    margin-top: 20px;
-
-    &:not(:first-child) {
-        margin-left: 20px;
-    }
+    width: 100px;
 
     .btn_delete {
         position: absolute;
-        left: calc(50% + 5px);
-        bottom: 70%;
+        left: 60%;
         fill: red;
         cursor: pointer;
         transition: all .2s;

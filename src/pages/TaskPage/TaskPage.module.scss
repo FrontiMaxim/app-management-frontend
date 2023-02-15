@@ -1,0 +1,24 @@
+.page {
+    display: grid;
+
+    grid-template-areas: 
+        "information comments"
+        "resources comments";
+
+    justify-items: center;
+    align-items: center;
+
+    .information {
+        grid-area: information;
+    }   
+
+    .resources {
+        grid-area: resources;
+        width: 40vw;
+    }
+
+    .comments {
+        grid-area: comments;
+        height: 92%;
+    }
+}

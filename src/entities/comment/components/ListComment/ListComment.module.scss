@@ -1,6 +1,12 @@
+@import '../../../../shared/styles/colors';
+
 .list {
     width: 30vw;
     height: 40vh;
-    padding: 10px;
-    overflow-y: scroll;
+    padding: 5px 10px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

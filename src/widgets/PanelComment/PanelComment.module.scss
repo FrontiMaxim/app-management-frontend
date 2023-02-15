@@ -1,0 +1,29 @@
+@import '../../shared/styles/colors';
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+
+    border-radius: 10px;
+    box-shadow: 0 0 3px rgba($dark, .6);
+
+    background-color: $default;
+
+    h2 {
+        color: $primary;
+        margin-bottom: 5px;
+    }
+
+    hr {
+        height: 2px;
+        background-color: $grey;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .list {
+        margin-top: 10px;
+    }
+}

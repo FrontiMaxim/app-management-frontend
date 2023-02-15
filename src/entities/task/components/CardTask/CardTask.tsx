@@ -11,6 +11,7 @@ import { Avatar, Button, Dialog, ModalWindow, useDialog, useModalWindow } from '
 import { FormTask } from '../FormTask/FormTask';
 import { useDeleteTask } from '../../lib/hooks/useDeleteTask';
 import { useAppSelector } from '../../../../store';
+import { useNavigate } from 'react-router-dom';
 
 export const CardTask = ({ task, className }: PropsCardTask) => {
 
@@ -21,6 +22,8 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
   const dialog = useDialog();
 
   const [remove] = useDeleteTask();
+
+  const navigate = useNavigate();
   
   return (
     <>
@@ -84,6 +87,14 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
               <Button
                 mode='primary'
                 className={styles.btn_open}
+                onClick={() => navigate(
+                  '/cabinet/task',
+                  {
+                    state: {
+                      currentTask: task
+                    }
+                  }
+                )}
               >
                 Открыть
               </Button>
