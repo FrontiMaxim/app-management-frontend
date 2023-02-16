@@ -9,7 +9,7 @@ export const CardResource = ({ name, link }: PropsCardResource) => {
     const size = 40;
     let icon = <FaFile className={styles.icon} size={size} />;
     const extension: Extension = name.slice(name.lastIndexOf('.')) as Extension;
-    
+
     switch(extension) {
         case '.doc':
         case '.docx':

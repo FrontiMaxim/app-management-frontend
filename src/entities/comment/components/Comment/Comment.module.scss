@@ -9,11 +9,12 @@
     justify-content: space-around;
 
     padding: 10px 5px;
-    margin-top: 10px;
+    margin: 10px auto 0 auto;
 
     background-color: #fff;
 
-   
+    max-width: 95%;
+
     box-shadow: 0 0 3px rgba($color: #000000, $alpha: .8);
     border-radius: 10px;
     .information {
@@ -27,9 +28,11 @@
 
         font-size: 12px;
 
-        .date {
+        .sender {
+            font-weight: bold;
+        }
 
-    
+        .date {
             font-weight: bold;
             color: #b1b1b1;
             

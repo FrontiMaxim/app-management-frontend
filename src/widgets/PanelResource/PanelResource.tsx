@@ -4,10 +4,13 @@ import Dropzone from 'react-dropzone';
 import styles from './PanelResource.module.scss';
 import { PropsPanelResource } from './PanelResource.props';
 import cn from 'classnames';
+import { useAppSelector } from '../../store';
 
 export const PanelResource = ({id_task, className}: PropsPanelResource) => {
 
     const [create] = useCreateResource();
+
+    const { role } = useAppSelector(state => state.user);
 
     const handlerOnDrop = (files: any) => {
 
@@ -27,7 +30,10 @@ export const PanelResource = ({id_task, className}: PropsPanelResource) => {
             <h2>Ресурсы</h2>
             <hr />
             <ListResource id_task={id_task} className={styles.list}/>
-            <Dropzone onDrop={handlerOnDrop}>
+            {
+                role === 'DESIGNER' &&
+
+                <Dropzone onDrop={handlerOnDrop}>
                 {
                     ({getRootProps, getInputProps}) => (
                     <section>
@@ -38,7 +44,9 @@ export const PanelResource = ({id_task, className}: PropsPanelResource) => {
                     </section>
                 )
                 }
-            </Dropzone>
+                </Dropzone>
+            }
+           
         </div>
     )
 }

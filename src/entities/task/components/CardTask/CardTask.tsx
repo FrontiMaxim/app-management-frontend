@@ -4,7 +4,7 @@ import { PropsCardTask } from './CardTask.props';
 import { MenuCardTask } from '../MenuCardTask/MenuCardTask';
 import { TagStatusTask } from '../TagStatusTask/TagStatusTask';
 import { ContainerInformationTask } from '../ContainerInformationTask/ContainerInformationTask';
-import { FaPen } from 'react-icons/fa';
+import { FaCheckCircle, FaPen } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
 import cn from 'classnames';
 import { Avatar, Button, Dialog, ModalWindow, useDialog, useModalWindow } from '../../../../shared';
@@ -56,7 +56,7 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
           <div className={styles.head}>
             <TagStatusTask type={task.status.name} />
             {
-              roleUser==='ADMIN' &&  
+              roleUser === 'ADMIN' && task.status.name === 'SCHEDULED' ?
               <MenuCardTask>
                 <FaPen 
                   size={12} 
@@ -69,6 +69,14 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
                   className={cn(styles.btn, styles.delete)} 
                   title='Удалить' 
                   onClick={modalWindowForDialog.open}
+                />
+              </MenuCardTask>
+              : roleUser === 'ADMIN' && task.status.name === 'ON_PROGRES' &&
+              <MenuCardTask>
+                <FaCheckCircle 
+                 size={15} 
+                 className={cn(styles.btn, styles.complete)} 
+                 title='Установить статус "Выполнено"' 
                 />
               </MenuCardTask>
             }
