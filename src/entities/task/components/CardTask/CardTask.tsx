@@ -12,6 +12,7 @@ import { FormTask } from '../FormTask/FormTask';
 import { useDeleteTask } from '../../lib/hooks/useDeleteTask';
 import { useAppSelector } from '../../../../store';
 import { useNavigate } from 'react-router-dom';
+import { useUpdateTask } from '../../lib/hooks/useUpdateTask';
 
 export const CardTask = ({ task, className }: PropsCardTask) => {
 
@@ -22,6 +23,12 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
   const dialog = useDialog();
 
   const [remove] = useDeleteTask();
+  const [update] = useUpdateTask();
+
+  const updateStatusTask = () => {
+    task.status.id_status = 3;
+    update(task);
+  }
 
   const navigate = useNavigate();
   
@@ -77,7 +84,8 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
                  size={15} 
                  className={cn(styles.btn, styles.complete)} 
                  title='Установить статус "Выполнено"' 
-                />
+                 onClick={updateStatusTask}
+              />
               </MenuCardTask>
             }
           </div>

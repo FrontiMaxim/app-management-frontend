@@ -143,7 +143,7 @@ export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }:
                     mode='primary'
                     className={styles.btn}
                 >
-                    {mode === 'CREATE' ? 'Создать' : 'Сохранить изменения'}
+                    {mode === 'CREATE' ? 'Создать' : 'Сохранить'}
                 </Button>
 
                 <Button 

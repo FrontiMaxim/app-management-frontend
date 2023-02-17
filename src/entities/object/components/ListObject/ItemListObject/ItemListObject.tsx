@@ -8,12 +8,15 @@ import cn from 'classnames';
 import styles from './ItemListObject.module.scss';
 import { useDeleteObject } from '../../../lib/hooks/useDeleteObject';
 import { IUser } from '../../../../user';
+import { useAppSelector } from '../../../../../store';
 
 
 export const ItemListObject = ({ isChange, data, ...props}: IPropsItemListObject) => {
 
     const modalWindowForForm = useModalWindow();
     const modalWindowForDialog = useModalWindow();
+
+    const { role } = useAppSelector(state => state.user);
 
     const dialog = useDialog();
    
@@ -43,15 +46,19 @@ export const ItemListObject = ({ isChange, data, ...props}: IPropsItemListObject
         <li className={styles.item} {...props} >
             <CardObject {...data} />
 
-            <div className={styles.container_team}>
-                <span className={styles.head}>Команда:</span>
-                {
-                    data.users &&  <AvatarGroup users={data.users as IUser[]} />
-                }
-            </div>
+            {
+                role !== 'DESIGNER' && 
+                <div className={styles.container_team}>
+                    <span className={styles.head}>Команда:</span>
+                    {
+                        data.users &&  <AvatarGroup users={data.users as IUser[]} />
+                    }
+                </div>
+            }
+           
             
             {
-                isChange &&
+                isChange &&  role !== 'DESIGNER' && role !== 'CLIENT' &&
                 <div className={styles.group_btn}>
                     <FaPen  className={styles.btn} onClick={modalWindowForForm.open} title='Редактировать'/>
 

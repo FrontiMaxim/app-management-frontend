@@ -4,9 +4,9 @@ import { ITask, ListTask, TagListTask, distributeTasksByStatus, useTask } from '
 import styles from './TaskBoard.module.scss';
 import cn from 'classnames';
 
-export const TaskBoard = ({id_object, id_user, className}: PropsTaskBoard) => {
+export const TaskBoard = ({id_object, className}: PropsTaskBoard) => {
     
-    const { tasks } = useTask(id_object, id_user);
+    const { tasks } = useTask(id_object);
 
     const [scheduledTasks, setScheduledTasks] = useState<ITask[]>([]);
     const [onProgresTasks, setOnProgresTasks] = useState<ITask[]>([]);

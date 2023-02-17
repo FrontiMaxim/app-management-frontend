@@ -9,3 +9,4 @@ export * from './store/listUserSlice';
 export * from './components/ListUsers/ListUsers';
 export * from './components/FormUser/FormUser';
 export * from './components/MultiSelectUser/MultiSelectUser';
+export * from './lib/hooks/useUpdateAvatar';

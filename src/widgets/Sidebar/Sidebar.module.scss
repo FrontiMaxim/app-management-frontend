@@ -7,8 +7,12 @@
     max-width: 400px;
     min-width: 300px;
 
-    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
+    padding: 70px 0;
+  
     .user {
 
         display: flex;
@@ -16,12 +20,33 @@
         align-items: center;
 
         width: 100%;
-       
-        .avatar {
-            width: 180px;
-            height: 180px;
-            margin-bottom: 15px;
+
+        .container_avatar {
+
+            position: relative;
+
+            .avatar {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 15px;
+            }
+
+            .btn_change_avatar {
+                position: absolute;
+                bottom: 5%;
+                left: 70%;
+                background-color: $default;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all .2s;
+
+                &:hover {
+                    transform: translateY(-4px);
+                }
+            }
         }
+       
+        
 
         .name {
             text-align: center;
