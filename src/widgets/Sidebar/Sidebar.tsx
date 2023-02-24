@@ -53,6 +53,7 @@ export const Sidebar = () => {
     }
 
     const [updateAvatar] = useUpdateAvatar();
+    
     const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
       const formData = new FormData();  
      

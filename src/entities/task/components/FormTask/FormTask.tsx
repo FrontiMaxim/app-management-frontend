@@ -79,8 +79,6 @@ export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }:
                     placeholder='Название задачи' 
                     register={register} 
                     nameField='name'
-                    minLength={20} 
-                    maxLength={52}
                     className={cn({
                         [styles.error_input]: errors['name']
                     })}

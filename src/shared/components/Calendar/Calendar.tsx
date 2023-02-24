@@ -8,7 +8,10 @@ export const Calendar = ({ register, nameField, className, ...props } : PropsCal
     <input 
       type='date' 
       {...register(nameField, {
-        required: true
+        required: {
+          value: true,
+          message: 'Поле обязательно к заполнению'
+        }
       })} 
       {...props}
       className={cn(styles.input, className)}

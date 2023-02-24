@@ -47,7 +47,7 @@ export const ItemListObject = ({ isChange, data, ...props}: IPropsItemListObject
             <CardObject {...data} />
 
             {
-                role !== 'DESIGNER' && 
+                role === 'ADMIN' && 
                 <div className={styles.container_team}>
                     <span className={styles.head}>Команда:</span>
                     {

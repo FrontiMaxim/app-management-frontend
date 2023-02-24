@@ -9,7 +9,12 @@ export const FieldNumber = ({ placeholder, register, nameField, min, max, classN
         <input 
           type='number' 
           placeholder={ placeholder } 
-          {...register(nameField)} 
+          {...register(nameField, {
+            required: {
+              value: true,
+              message: 'Поле обязательно к заполнению'
+            }
+          })} 
           className={cn(styles.input, className)}
         />
     </>

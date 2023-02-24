@@ -12,7 +12,10 @@ export const FieldText = ({ placeholder, register, nameField, minLength, maxLeng
           placeholder={ placeholder } 
           {...props}
           {...register(nameField, {
-            required: true,
+            required: {
+              value: true,
+              message: 'Поле обязательно к заполнению'
+            },
             minLength: {
               value: minLength ? minLength : 0,
               message: 'Недостаточно количество символов'

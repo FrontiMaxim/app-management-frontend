@@ -8,9 +8,6 @@ export const ListUsers = ({ users, isChange, className }: PropsListUsers) => {
     return (
         <ul className={cn(styles.list, className)}>
             {
-                !users.length && <div className={styles.empty}>Никого нет...</div>
-            }
-            {
                 users.map(user => <ItemListUsers 
                                     key={user.id_user}
                                     user={user} 

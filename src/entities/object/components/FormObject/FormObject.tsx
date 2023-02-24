@@ -82,8 +82,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                         placeholder='Дизайн кухни' 
                         register={register} 
                         nameField='note'
-                        minLength={10} 
-                        maxLength={52}
                         className={cn({
                             [styles.error_input]: errors['note']
                         })}
@@ -99,8 +97,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                         placeholder='Самара' 
                         register={register} 
                         nameField='city'
-                        minLength={3} 
-                        maxLength={14}
                         className={cn({
                             [styles.error_input]: errors['city']
                         })}
@@ -116,8 +112,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                         placeholder='Моссковское ш.' 
                         register={register} 
                         nameField='street'
-                        minLength={8} 
-                        maxLength={14}
                         className={cn({
                             [styles.error_input]: errors['street']
                         })}
@@ -133,8 +127,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                         placeholder='34Б' 
                         register={register} 
                         nameField='house'
-                        minLength={0} 
-                        maxLength={4}
                         className={cn({
                             [styles.error_input]: errors['house']
                         })}
@@ -181,8 +173,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                         placeholder='Иванов Иван Иванович' 
                         register={register} 
                         nameField='client'
-                        minLength={10} 
-                        maxLength={40}
                         className={cn({
                             [styles.error_input]: errors['client']
                         })}

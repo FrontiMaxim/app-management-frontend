@@ -15,7 +15,7 @@ export const useDeleteUser = (): IUseDeleteUser => {
     const queryClient = useQueryClient();
     
     const { mutate, isLoading, isError } = useMutation((id_user: string) => {
-        return deleteUser('/user/delete', id_user, token as string);
+        return deleteUser('/user/delete', id_user, token!);
     }, {
         onSuccess() {
             queryClient.invalidateQueries('users');

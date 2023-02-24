@@ -35,10 +35,7 @@ export const ListObject = ({ isChange }: PropsListObject) => {
                           >
                             Открыть задачи
                           </Button>
-                        </div>)
-                        
-                        
-                        
+                        </div>)            
         }
     </ul>
   )

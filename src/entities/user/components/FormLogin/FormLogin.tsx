@@ -43,9 +43,7 @@ export const FormLogin = () => {
                 <FieldText 
                     register={register} 
                     nameField='login' 
-                    placeholder={`Длина логина: ${minLengthLogin} - ${maxLengthLogin} символов`}
-                    minLength={minLengthLogin}
-                    maxLength={maxLengthLogin}
+                    placeholder='ivan'
                     className={cn({
                         [styles.error_input]: errors['login']
                     })}
@@ -59,9 +57,7 @@ export const FormLogin = () => {
                 <FieldPassword 
                     register={register} 
                     nameField='password' 
-                    placeholder={`Длина пароля: ${minLengthPassword} - ${maxLengthPassword} символов`}
-                    minLength={minLengthPassword}
-                    maxLength={maxLengthPassword}
+                    placeholder=''
                     required
                     className={cn({
                         [styles.error_input]: errors['password']

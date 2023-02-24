@@ -60,8 +60,6 @@ const FormUser = ({ mode, defaultData, closeModalWindow } : PropsFormUser) => {
                     placeholder='Иванов Иван Иванович' 
                     register={register} 
                     nameField='name'
-                    minLength={minLengthName} 
-                    maxLength={maxLengthName}
                     className={cn({
                         [styles.error_input]: errors['name']
                     })}
@@ -77,8 +75,6 @@ const FormUser = ({ mode, defaultData, closeModalWindow } : PropsFormUser) => {
                     placeholder='ivanov_ivan' 
                     register={register} 
                     nameField='login'
-                    minLength={minLengthLogin} 
-                    maxLength={maxLengthLogin}
                     className={cn({
                         [styles.error_input]: errors['login']
                     })}
@@ -95,9 +91,7 @@ const FormUser = ({ mode, defaultData, closeModalWindow } : PropsFormUser) => {
                     placeholder='' 
                     register={register} 
                     nameField='password'
-                    minLength={minLengthPassword} 
-                    maxLength={maxLengthPassword}
-                    required={false}
+                    required={mode === 'CREATE' ? true : false}
                     className={cn({
                         [styles.error_input]: errors['password']
                     })}
