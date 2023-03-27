@@ -5,23 +5,33 @@ import styles from './PanelResource.module.scss';
 import { PropsPanelResource } from './PanelResource.props';
 import cn from 'classnames';
 import { useAppSelector } from '../../store';
+import { useCreateNotification } from '../../entities/notification/lib/hooks/useCreateNotification';
 
 export const PanelResource = ({id_task, className}: PropsPanelResource) => {
 
-    const [create] = useCreateResource();
+    const [createResource] = useCreateResource();
+    const [createNotification] = useCreateNotification();
 
-    const { role } = useAppSelector(state => state.user);
+    const { role, id_user } = useAppSelector(state => state.user);
 
     const handlerOnDrop = (files: any) => {
 
         const formData = new FormData();  
         formData.append('resources', files[0]);
 
-        create({
+        createResource({
             body: formData,
             originalName: files[0].name,
             storageName:  Date.now().toString(),
             id_task
+        });
+
+        createNotification({
+            id_user,
+            id_task,
+            data: new Date(Date.now()) ,
+            is_watch: false,
+            type: 'RESOURCE'
         });
     }
 

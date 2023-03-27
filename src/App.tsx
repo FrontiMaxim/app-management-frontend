@@ -6,6 +6,7 @@ import { useBeforeunload } from 'react-beforeunload';
 import { useCloseSession } from './entities/session';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useLoacalStorage } from './shared';
+import { NotificationPage } from './pages/NotificationPage/NotificationPage';
 
 function App() {
 
@@ -39,7 +40,7 @@ function App() {
             <Route path='/cabinet/tasks' element={<TasksPage />} />
             <Route path='/cabinet/task' element={<TaskPage />} />
             <Route path='/cabinet/users' element={<UsersPage />} />
-            <Route path='/cabinet/dashboard' element={<div>Статистика</div>} />
+            <Route path='/cabinet/notifications' element={<NotificationPage />} />
           </Route>
         </Routes>
       </div>

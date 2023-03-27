@@ -2,13 +2,21 @@ import React from 'react';
 import { PropsMenu } from './Menu.props';
 import styles from './Menu.module.scss';
 import { MenuItem } from '../MenuItem/MenuItem';
+import { MenuItemWithBadge } from '../MenuItemWithBadge/MenuItemWithBadge';
+import { useAppSelector } from '../../../store';
 
 export const Menu = ({ items }: PropsMenu) => {
+
+  const { count } = useAppSelector(state => state.listNotification);
+
   return (
     <nav className={styles.menu}>
         <ul>
             {
-                items.map(item => <MenuItem key={Date.now() + item.href} {...item} />)
+                items.map(item => 
+                  item.withBadge ? <MenuItemWithBadge key={Date.now() + item.href} {...item}  count={count}/> 
+                  : <MenuItem key={Date.now() + item.href} {...item} />
+                )
             }
         </ul>
     </nav>

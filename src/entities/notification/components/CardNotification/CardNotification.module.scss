@@ -1,0 +1,17 @@
+@import '../../../../shared/styles/colors';
+
+.card {
+
+    .date {
+
+        margin-left: 20px;
+
+        color: $grey;
+        font-weight: 700;
+        font-size: 12px;
+
+        .time {
+            margin-left: 10px;
+        }
+    }
+}

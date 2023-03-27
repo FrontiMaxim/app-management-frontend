@@ -1,0 +1,42 @@
+@import '../../shared/styles/colors';
+
+.page {
+    grid-area: content;
+
+    padding-top: 30px;
+    padding-left: 70px;
+
+    h1 {
+        margin-bottom: 20px;
+        color: $primary;
+    }
+
+    .list {
+        list-style: none;
+
+        .list_item {
+
+            width: 40vw;
+
+            margin-top: 10px;
+            
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            box-shadow: 0 0 3px rgba($dark, .6);
+            border-radius: 10px;
+
+            background-color: $default;
+
+            cursor: pointer;
+
+            transition: all .2s;
+
+            &:hover {
+                background-color: $primary;
+                color: $default;
+            }
+        }
+    }
+}

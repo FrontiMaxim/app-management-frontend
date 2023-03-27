@@ -1,0 +1,33 @@
+@import '../../styles/colors';
+
+.badge {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    color: $cream;
+    font-weight: 700;
+
+    margin-left: 60px;
+
+    background-color: green;
+
+    animation-name: ripple;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 green;
+    }
+    75% {
+        box-shadow: 0 0 20px 0 green;
+    }
+}

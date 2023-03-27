@@ -3,12 +3,18 @@ import { Button, formatDate, formatTime } from '../../../../shared';
 import { useCreateComment } from '../../lib/hooks/useCreateComment';
 import styles from './FormComment.module.scss';
 import { PropsFormComment } from './FormComment.props';
+import { useCreateNotification } from '../../../notification/lib/hooks/useCreateNotification';
+import { useAppSelector } from '../../../../store';
 
 
 export const FormComment = ({ task, user }: PropsFormComment) => {
 
     const [comment, setComment] = useState<string>('');
-    const [create] = useCreateComment();
+    const [createComment] = useCreateComment();
+
+    const [createNotification] = useCreateNotification();
+
+    const { id_user } = useAppSelector(state => state.user);
 
     const submit = (e: React.MouseEvent<HTMLButtonElement>) => {
 
@@ -17,12 +23,20 @@ export const FormComment = ({ task, user }: PropsFormComment) => {
         if(comment !== '') {
             const date = new Date().toString();
 
-            create({
+            createComment({
                 content: comment,
                 task,
                 user,
                 data: formatDate(date, 'LOCAL'),
                 time: formatTime(date)
+            });
+
+            createNotification({
+                id_user,
+                id_task: task.id_task,
+                data: new Date(Date.now()) ,
+                is_watch: false,
+                type: 'MESSAGE'
             });
     
             setComment('');

@@ -3,26 +3,37 @@ import styles from './Sidebar.module.scss';
 import { Avatar, Menu, PropsMenuItem } from '../../shared';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { installUser, useUser, ROLES, useUsers, setListUser, ListUsers, useUpdateAvatar} from '../../entities/user';
-import { MdOutlineMapsHomeWork } from 'react-icons/md';
+import { MdOutlineMapsHomeWork, MdOutlineNotifications } from 'react-icons/md';
 import { HiUsers } from 'react-icons/hi';
 import { BsPlusCircleFill } from 'react-icons/bs';
+import { useNotification } from '../../entities/notification/lib/hooks/useNotification';
+import { setListNotification } from '../../entities/notification/store/listUserSlice';
 
 
 export const Sidebar = () => {
 
     const { user } = useUser();
     const { users } = useUsers();
-    
+    const { notifications } = useNotification();
+
     const menuItems: PropsMenuItem[] = [
       {
         icon: MdOutlineMapsHomeWork,
         value: 'Проекты',
-        href: '/cabinet'
+        href: '/cabinet',
+        withBadge: false
       },
       {
         icon: HiUsers,
         value: 'Пользователи',
-        href: '/cabinet/users'
+        href: '/cabinet/users',
+        withBadge: false
+      },
+      {
+        icon: MdOutlineNotifications,
+        value: 'Уведомления',
+        href: '/cabinet/notifications',
+        withBadge: true
       }
     ];
 
@@ -42,6 +53,13 @@ export const Sidebar = () => {
           dispatch(setListUser(users));
       }
     }, [users]);
+
+    
+    useEffect(() => {
+      if(notifications) {
+        dispatch(setListNotification(notifications));
+      }
+    }, [notifications])
 
 
     const refInputFile = useRef() as RefObject<HTMLInputElement> | null;

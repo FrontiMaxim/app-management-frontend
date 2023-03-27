@@ -15,7 +15,7 @@ export const useOpenSession = (): IUseOpenSession => {
 
     const { data: session, isLoading, isError: isErrorOpenSession } = useQuery<ISession, Error, ISession, string>(
         'session', 
-        () => openSession('/session/open', token as string)
+        () => openSession('/session/open', token!)
     );
 
     return {

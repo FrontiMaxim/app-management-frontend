@@ -38,8 +38,6 @@ export const CardResource = ({ name, link }: PropsCardResource) => {
             break;
     }
 
-    console.log(name)
-
     return (
         <div className={styles.card}>
             <a 
