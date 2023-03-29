@@ -25,7 +25,11 @@ export const NotificationPage = () => {
             <ul className={styles.list}>
                 {
                     list.map(item => 
-                        <li className={styles.list_item} onClick={() => goToNotification(item.task)} >
+                        <li 
+                            className={styles.list_item} 
+                            onClick={() => goToNotification(item.task)} 
+                            key={item.id_notification}
+                        >
                             <CardNotification 
                                 data={item} 
                                 type={item.type}

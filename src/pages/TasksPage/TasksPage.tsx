@@ -20,7 +20,7 @@ export const TasksPage = () => {
                     {
                         role === 'ADMIN' && 
                         <div className={styles.container_team}>
-                            <span>Команда:</span>
+                            <span>Участники:</span>
                             <AvatarGroup users={state.currentObject.users} />
                         </div>
                     }

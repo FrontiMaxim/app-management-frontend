@@ -78,7 +78,7 @@ export const CardTask = ({ task, className }: PropsCardTask) => {
                   onClick={modalWindowForDialog.open}
                 />
               </MenuCardTask>
-              : roleUser === 'ADMIN' && task.status.name === 'ON_PROGRES' &&
+              : roleUser === 'CLIENT' && task.status.name === 'ON_PROGRES' &&
               <MenuCardTask>
                 <FaCheckCircle 
                  size={15} 

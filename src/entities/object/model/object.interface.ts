@@ -8,6 +8,5 @@ export interface IObject {
     apartment: number | null;
     note: string;
     data_start: string;
-    client: string;
     users?: IUser[] | string[];
 }

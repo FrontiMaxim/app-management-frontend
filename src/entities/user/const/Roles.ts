@@ -1,5 +1,5 @@
 export const ROLES: { [key: string]: string} = {
     'CLIENT': 'Клиент',
-    'ADMIN': 'Администратор',
+    'ADMIN': 'Руководитель',
     'DESIGNER': 'Дизайнер',
 };

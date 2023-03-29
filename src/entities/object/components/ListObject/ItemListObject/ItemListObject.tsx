@@ -49,7 +49,7 @@ export const ItemListObject = ({ isChange, data, ...props}: IPropsItemListObject
             {
                 role === 'ADMIN' && 
                 <div className={styles.container_team}>
-                    <span className={styles.head}>Команда:</span>
+                    <span className={styles.head}>Участники:</span>
                     {
                         data.users &&  <AvatarGroup users={data.users as IUser[]} />
                     }

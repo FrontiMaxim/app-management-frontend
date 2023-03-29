@@ -2,18 +2,10 @@ import React from 'react';
 import { PropsCardUser } from './CardUser.props';
 import styles from './CardUser.module.scss';
 import { Avatar } from '../Avatar/Avatar';
+import { ROLES } from '../../../entities/user';
+
 
 export const CardUser = ({ avatar, name, role, is_online }: PropsCardUser) => {
-
-    interface TRoles {
-        [key: string]: string,
-    }
-
-    const roles: TRoles = {
-        'ADMIN': 'Администратор',
-        'CLIENT': 'Клиент',
-        'DESIGNER': 'Дизайнер'
-    };
 
     return (
         <div className={styles.card_user}>
@@ -23,7 +15,7 @@ export const CardUser = ({ avatar, name, role, is_online }: PropsCardUser) => {
                     { name }
                 </div>
                 <div className={styles.role}>
-                    { roles[role] }
+                    { ROLES[role] }
                 </div>
             </div>
         </div>

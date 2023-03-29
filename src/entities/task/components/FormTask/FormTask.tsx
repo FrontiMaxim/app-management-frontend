@@ -27,7 +27,7 @@ export const FormTask = ({ mode, defaultData, closeModalWindow, currentObject }:
 
     useEffect(() => {
         if(participants) {
-            setPerformers(filterUsersByRole(participants, 'DESIGNER', 'ADMIN'));
+            setPerformers(filterUsersByRole(participants, 'DESIGNER'));
         }
     }, [participants]);
 

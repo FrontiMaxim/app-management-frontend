@@ -116,10 +116,9 @@ export const Sidebar = () => {
             </div>
         }
 
-        {
-            user && user.role === 'ADMIN' &&
-            <Menu items={menuItems}/>
-        }
+       
+        <Menu items={menuItems}/>
+        
        
         <div className={styles.container_list}>
           <h4>Пользователи онлайн:</h4>

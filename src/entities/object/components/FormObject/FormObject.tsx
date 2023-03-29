@@ -167,22 +167,6 @@ export const FormObject = ({ mode, defaultData, closeModalWindow } : PropsFormOb
                     }
                 </label>
                 
-                <label>
-                    <p>Клиент</p>
-                    <FieldText 
-                        placeholder='Иванов Иван Иванович' 
-                        register={register} 
-                        nameField='client'
-                        className={cn({
-                            [styles.error_input]: errors['client']
-                        })}
-                    />
-                    {
-                        errors['client'] && <div className={styles.error_text}>{ errors['client'].message }</div>
-                    }
-                </label>
-
-
                 <div>
                     <label>
                         <p>Команда</p>

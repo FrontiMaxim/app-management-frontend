@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CardObject.module.scss';
 import { PropsCardObject } from './CardObject.props';
 
-export const CardObject = ({ city, street, house, apartment, note, data_start, client, users }: PropsCardObject) => {
+export const CardObject = ({ city, street, house, apartment, note, data_start, users }: PropsCardObject) => {
     return (
         <div className={styles.card}>
             <div className={styles.note}>
@@ -19,10 +19,6 @@ export const CardObject = ({ city, street, house, apartment, note, data_start, c
                         {apartment}
                     </span>
                 }
-            </div>
-            <div>
-                <span className={styles.bold}>Клиент: </span> 
-                {client}
             </div>
             <div>
                 <span className={styles.bold}>Дата запуска проекта: </span> 
