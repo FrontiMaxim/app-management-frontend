@@ -1,8 +1,8 @@
 import axios from "axios";
-import { IResource } from "../model/resource.interface";
+import { IResourceWithDateAndUser } from "../model/resourceWithDateAndUser";
 
 export const getResourcesByIdTask = async (url: string, id_task: string, token: string) => {
-    const{ data } = await axios.get<IResource[]>(
+    const{ data } = await axios.get<IResourceWithDateAndUser[]>(
         url, 
         { 
             params: { id_task }, 

@@ -1,4 +1,5 @@
+import { IResourceWithDateAndUser } from "../../model/resourceWithDateAndUser";
+
 export interface PropsCardResource {
-    name: string;
-    link: string;
+    data: IResourceWithDateAndUser
 }

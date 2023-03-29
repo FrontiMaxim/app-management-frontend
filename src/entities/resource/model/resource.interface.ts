@@ -3,4 +3,5 @@ export interface IResource {
     originalName: string;
     storageName: string,
     id_task: string;
+    id_user: string;
 }

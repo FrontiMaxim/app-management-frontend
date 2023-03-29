@@ -1,10 +1,9 @@
 import React from 'react'
 import { useResource } from '../../lib/hooks/useResource'
-import { CardResourceWithDelete } from '../CardResourceWithDelete/CardResourceWithDelete';
 import styles from './ListResource.module.scss';
 import cn from 'classnames';
 import { PropsListResource } from './ListResource.props';
-import Empty from '../../../../shared/components/Empty/Empty';
+import { CardResource } from '../CardResource/CardResource';
 
 export const ListResource = ({id_task, className}: PropsListResource) => {
 
@@ -12,15 +11,25 @@ export const ListResource = ({id_task, className}: PropsListResource) => {
 
     return (
         <div className={cn(styles.list, className)}>
-            {
-                resources &&
-                resources.length === 0 ? <Empty text='Ресурсов нет...'/>
-                :
-                resources?.map(resource => <CardResourceWithDelete 
-                                                key={resource.id_resource}
-                                                resource={resource}
-                                            /> )
-            }
+            <table>
+                <thead>
+                    <tr>
+                        <th>Файл</th>
+                        <th>Автор</th>
+                        <th>Дата</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    resources &&
+                    resources?.map(resource => <CardResource
+                                                    key={resource.id_resource}
+                                                    data={resource}
+                                                /> )
+                }
+                </tbody>
+            </table>
         </div>
     )
 }

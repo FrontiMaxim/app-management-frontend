@@ -1,12 +1,64 @@
+@import '../../../../shared/styles/colors';
+
 .list {
+    width: 100%;
 
-    width: inherit;
+    margin-top: 20px;
+    height: 200px;
 
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    overflow: auto;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
-    grid-row-gap: 20px;
+    table {
 
-    justify-items: center;
+        width: inherit;
+        text-align: center;
+
+        thead {
+
+            background-color: $primary;
+            color: $default;
+            
+            th {
+                padding: 4px 0;
+
+                &:nth-child(1) {
+                    width: 30%;
+                }
+        
+                &:nth-child(2) {
+                    width: 50%;
+                }
+        
+                &:nth-child(3) {
+                    width: 20%;
+                }
+            }  
+    
+        }
+       
+        tbody {
+            tr {
+                td {
+                    height: 100px;
+
+                    &:nth-child(1) {
+                        width: 30%;
+                    }
+            
+                    &:nth-child(2) {
+                        width: 50%;
+                    }
+            
+                    &:nth-child(3) {
+                        width: 20%;
+                    }
+                }
+            }
+        }
+    }
+    
 }

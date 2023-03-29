@@ -12,7 +12,7 @@ export const PanelResource = ({id_task, className}: PropsPanelResource) => {
     const [createResource] = useCreateResource();
     const [createNotification] = useCreateNotification();
 
-    const { role, id_user } = useAppSelector(state => state.user);
+    const { id_user } = useAppSelector(state => state.user);
 
     const handlerOnDrop = (files: any) => {
 
@@ -23,7 +23,8 @@ export const PanelResource = ({id_task, className}: PropsPanelResource) => {
             body: formData,
             originalName: files[0].name,
             storageName:  Date.now().toString(),
-            id_task
+            id_task,
+            id_user
         });
 
         createNotification({
@@ -41,8 +42,6 @@ export const PanelResource = ({id_task, className}: PropsPanelResource) => {
             <hr />
             <ListResource id_task={id_task} className={styles.list}/>
             {
-                role === 'DESIGNER' &&
-
                 <Dropzone onDrop={handlerOnDrop}>
                 {
                     ({getRootProps, getInputProps}) => (

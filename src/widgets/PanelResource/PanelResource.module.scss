@@ -20,15 +20,6 @@
         border-radius: 5px;
     }
 
-    .list {
-        margin-top: 20px;
-        height: 200px;
-        overflow: auto;
-    
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
 
     .zone {
 

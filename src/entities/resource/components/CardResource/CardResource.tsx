@@ -3,12 +3,21 @@ import { FaFile, FaFileAudio, FaFileExcel, FaFileImage, FaFilePdf, FaFilePowerpo
 import styles from './CardResource.module.scss';
 import { PropsCardResource } from './CardResource.props';
 import { Extension } from '../../model/extension.type';
+import { formatDate } from '../../../../shared';
+import { useDeleteResource } from '../../lib/hooks/useDeleteResource';
+import { useAppSelector } from '../../../../store';
+import { TiDelete } from 'react-icons/ti';
 
-export const CardResource = ({ name, link }: PropsCardResource) => {
+export const CardResource = ({ data: {originalName, user, date, storageName, id_resource} }: PropsCardResource) => {
 
     const size = 40;
     let icon = <FaFile className={styles.icon} size={size} />;
-    const extension: Extension = name.slice(name.lastIndexOf('.')) as Extension;
+    const extension: Extension = originalName.slice(originalName.lastIndexOf('.')) as Extension;
+    const link = process.env.REACT_APP_URL_SERVER + '/resources/' + storageName;
+
+    const [remove] = useDeleteResource();
+    const { id_user } = useAppSelector(state => state.user);
+    
 
     switch(extension) {
         case '.doc':
@@ -39,20 +48,37 @@ export const CardResource = ({ name, link }: PropsCardResource) => {
     }
 
     return (
-        <div className={styles.card}>
-            <a 
-                className={styles.link_container} 
-                
-                download
-                href={link}
-                target='_blank'
-                rel="noopener noreferrer" 
-            >
+        <tr className={styles.card}>
+            <td>
+                <a 
+                    className={styles.link_container} 
+                    download
+                    href={link}
+                    target='_blank'
+                    rel="noopener noreferrer" 
+                >
+                    {
+                        icon
+                    }
+                    <span className={styles.name}>{originalName}</span>
+                </a>
+            </td>
+            <td>
+                {user.name}
+            </td>
+            <td>
+                { formatDate(date.toString(), 'LOCAL') }
+            </td>
+            <td>
                 {
-                    icon
+                    id_user === user.id_user &&
+                    <TiDelete 
+                        onClick={() => remove(id_resource)} 
+                        className={styles.btn_delete} 
+                        size={25}
+                    />
                 }
-                <span className={styles.name}>{name}</span>
-            </a>
-        </div>
+            </td>
+        </tr>
     );
 }

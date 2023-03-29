@@ -2,12 +2,8 @@
 
 .card {
 
-    display: inline-block;
-    width: 100px;
-   
     .link_container {
-        width: inherit;
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -19,12 +15,16 @@
         }
         
         .name {
-            width: inherit;
             text-align: center;
             margin-top: 4px;
             font-size: 12px;
             font-weight: bold;
             color: #000;
         }
+    }
+    
+    .btn_delete {
+        fill: $error;
+        cursor: pointer;
     }
 }

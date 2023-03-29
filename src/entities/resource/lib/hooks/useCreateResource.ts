@@ -12,7 +12,8 @@ type params = {
     body: FormData,
     originalName: string, 
     storageName: string, 
-    id_task: string
+    id_task: string,
+    id_user: string
 };
 
 export const useCreateResource = (): IUseCreateResource => {
@@ -22,12 +23,12 @@ export const useCreateResource = (): IUseCreateResource => {
     const queryClient = useQueryClient();
     
     const { mutate, isLoading, isError } = useMutation(
-        ({body, originalName, storageName, id_task}: params) => {
+        ({body, originalName, storageName, id_task, id_user}: params) => {
         return createResource(
             '/resource/create', 
             body, 
-            { id_resource: '', originalName, storageName, id_task }, 
-            token as string
+            {id_resource: '', originalName, storageName, id_task, id_user }, 
+            token!
         );
     }, {
         onSuccess() {
